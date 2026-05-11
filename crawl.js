@@ -78,18 +78,30 @@ async function pushToGitHub(octokit, files) {
   });
   const baseTreeSha = latestCommit.tree.sha;
 
-  // Create blobs for each file
+  // Create blobs in batches to avoid GitHub secondary rate limits
   console.log('Creating blobs...');
-  const treeItems = await Promise.all(
-    files.map(async ({ repoPath, content }) => {
-      const { data: blob } = await octokit.git.createBlob({
-        owner: GITHUB_OWNER, repo: GITHUB_REPO,
-        content: Buffer.from(content).toString('base64'),
-        encoding: 'base64',
-      });
-      return { path: repoPath, mode: '100644', type: 'blob', sha: blob.sha };
-    })
-  );
+  const BLOB_BATCH_SIZE = 10;
+  const BLOB_BATCH_DELAY_MS = 500;
+  const treeItems = [];
+  for (let i = 0; i < files.length; i += BLOB_BATCH_SIZE) {
+    const batch = files.slice(i, i + BLOB_BATCH_SIZE);
+    const items = await Promise.all(
+      batch.map(async ({ repoPath, content }) => {
+        const { data: blob } = await octokit.git.createBlob({
+          owner: GITHUB_OWNER, repo: GITHUB_REPO,
+          content: Buffer.from(content).toString('base64'),
+          encoding: 'base64',
+        });
+        return { path: repoPath, mode: '100644', type: 'blob', sha: blob.sha };
+      })
+    );
+    treeItems.push(...items);
+    process.stdout.write(`\r  ${treeItems.length}/${files.length} blobs created`);
+    if (i + BLOB_BATCH_SIZE < files.length) {
+      await new Promise((r) => setTimeout(r, BLOB_BATCH_DELAY_MS));
+    }
+  }
+  console.log();
 
   // Create a new tree
   const { data: newTree } = await octokit.git.createTree({
