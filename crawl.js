@@ -1,29 +1,35 @@
-// Crawls docs.cycode.com using a saved session and writes each page as markdown.
+// Crawls docs.cycode.com using a saved session and pushes each page as markdown
+// directly to GitHub — nothing is written to disk.
+//
 // Usage: node crawl.js
-// Run login.js first to create session.json.
+// Requires:
+//   - session.json (run login.js first)
+//   - GITHUB_TOKEN env var with repo scope
 
 const { chromium } = require('playwright');
 const TurndownService = require('turndown');
-const fs = require('fs');
+const { Octokit } = require('@octokit/rest');
 const path = require('path');
-const { execSync } = require('child_process');
+const fs = require('fs');
 
 const SESSION_FILE = path.join(__dirname, 'session.json');
-const OUTPUT_DIR = path.join(__dirname, 'docs');
 const START_URL = 'https://docs.cycode.com/';
 const DOMAIN = 'docs.cycode.com';
 const CONCURRENCY = 3;
 
-const td = new TurndownService({ headingStyle: 'atx', codeBlockStyle: 'fenced' });
+const GITHUB_OWNER = 'hackeral-cycode';
+const GITHUB_REPO = 'cycode-docs-crawler';
+const GITHUB_BRANCH = 'main';
+const GITHUB_DOCS_PATH = 'docs';
 
-// Remove nav, sidebar, footer, and other chrome — keep only doc content
+const td = new TurndownService({ headingStyle: 'atx', codeBlockStyle: 'fenced' });
 td.remove(['nav', 'header', 'footer', 'script', 'style', 'aside', '[role="navigation"]']);
 
-function urlToFilePath(url) {
+function urlToRepoPath(url) {
   const u = new URL(url);
   let p = u.pathname.replace(/\/$/, '') || '/index';
   p = p.replace(/[^a-zA-Z0-9/_-]/g, '_');
-  return path.join(OUTPUT_DIR, p + '.md');
+  return `${GITHUB_DOCS_PATH}${p}.md`;
 }
 
 function normalizeUrl(url) {
@@ -39,37 +45,76 @@ function normalizeUrl(url) {
 
 function isCrawlable(url) {
   try {
-    const u = new URL(url);
-    return u.hostname === DOMAIN;
+    return new URL(url).hostname === DOMAIN;
   } catch {
     return false;
   }
 }
 
 async function extractLinks(page) {
-  return page.$$eval('a[href]', (els) =>
-    els.map((a) => a.href).filter(Boolean)
-  );
+  return page.$$eval('a[href]', (els) => els.map((a) => a.href).filter(Boolean));
 }
 
 async function extractMainContent(page) {
-  // Try common doc platform selectors in priority order
-  const selectors = [
-    'article',
-    'main',
-    '[role="main"]',
-    '.markdown-body',
-    '.content',
-    '.docs-content',
-    '#content',
-  ];
+  const selectors = ['article', 'main', '[role="main"]', '.markdown-body', '.content', '.docs-content', '#content'];
   for (const sel of selectors) {
     const el = await page.$(sel);
-    if (el) {
-      return el.innerHTML();
-    }
+    if (el) return el.innerHTML();
   }
   return page.$eval('body', (b) => b.innerHTML);
+}
+
+// Push all collected files to GitHub in a single commit using the Git Data API
+async function pushToGitHub(octokit, files) {
+  console.log(`\nPushing ${files.length} files to GitHub...`);
+
+  const { data: ref } = await octokit.git.getRef({
+    owner: GITHUB_OWNER, repo: GITHUB_REPO, ref: `heads/${GITHUB_BRANCH}`,
+  });
+  const latestCommitSha = ref.object.sha;
+
+  const { data: latestCommit } = await octokit.git.getCommit({
+    owner: GITHUB_OWNER, repo: GITHUB_REPO, commit_sha: latestCommitSha,
+  });
+  const baseTreeSha = latestCommit.tree.sha;
+
+  // Create blobs for each file
+  console.log('Creating blobs...');
+  const treeItems = await Promise.all(
+    files.map(async ({ repoPath, content }) => {
+      const { data: blob } = await octokit.git.createBlob({
+        owner: GITHUB_OWNER, repo: GITHUB_REPO,
+        content: Buffer.from(content).toString('base64'),
+        encoding: 'base64',
+      });
+      return { path: repoPath, mode: '100644', type: 'blob', sha: blob.sha };
+    })
+  );
+
+  // Create a new tree
+  const { data: newTree } = await octokit.git.createTree({
+    owner: GITHUB_OWNER, repo: GITHUB_REPO,
+    base_tree: baseTreeSha,
+    tree: treeItems,
+  });
+
+  // Create a new commit
+  const date = new Date().toISOString().split('T')[0];
+  const { data: newCommit } = await octokit.git.createCommit({
+    owner: GITHUB_OWNER, repo: GITHUB_REPO,
+    message: `chore: crawl docs.cycode.com (${date}, ${files.length} pages)`,
+    tree: newTree.sha,
+    parents: [latestCommitSha],
+  });
+
+  // Update the branch ref
+  await octokit.git.updateRef({
+    owner: GITHUB_OWNER, repo: GITHUB_REPO,
+    ref: `heads/${GITHUB_BRANCH}`,
+    sha: newCommit.sha,
+  });
+
+  console.log(`Pushed to GitHub: ${newCommit.sha.slice(0, 7)}`);
 }
 
 (async () => {
@@ -77,15 +122,18 @@ async function extractMainContent(page) {
     console.error('No session.json found. Run: node login.js');
     process.exit(1);
   }
+  if (!process.env.GITHUB_TOKEN) {
+    console.error('GITHUB_TOKEN env var is required.');
+    process.exit(1);
+  }
 
-  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-
+  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({ storageState: SESSION_FILE });
 
   const visited = new Set();
   const queue = [normalizeUrl(START_URL)];
-  let pageCount = 0;
+  const pages = []; // { repoPath, content } — kept in memory only
 
   async function crawlOne(url) {
     if (visited.has(url)) return;
@@ -95,35 +143,27 @@ async function extractMainContent(page) {
     try {
       const response = await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
 
-      // Skip non-HTML or error responses
       const ct = response?.headers()['content-type'] ?? '';
       if (!ct.includes('text/html') || (response?.status() ?? 200) >= 400) return;
 
-      // If we got redirected off-domain (e.g. back to OAuth), skip
       const finalUrl = page.url();
       if (!isCrawlable(finalUrl)) {
-        console.log(`  Skipping off-domain redirect: ${url} -> ${finalUrl}`);
+        console.log(`  Skipping off-domain redirect: ${url}`);
         return;
       }
 
       const title = await page.title();
       const html = await extractMainContent(page);
       const markdown = td.turndown(html);
+      const repoPath = urlToRepoPath(url);
 
-      const filePath = urlToFilePath(url);
-      fs.mkdirSync(path.dirname(filePath), { recursive: true });
-      fs.writeFileSync(filePath, `# ${title}\n\nSource: ${url}\n\n---\n\n${markdown}\n`);
+      pages.push({ repoPath, content: `# ${title}\n\nSource: ${url}\n\n---\n\n${markdown}\n` });
+      console.log(`[${pages.length}] ${url}`);
 
-      pageCount++;
-      console.log(`[${pageCount}] ${url}`);
-
-      // Collect new links
       const links = await extractLinks(page);
       for (const link of links) {
         const norm = normalizeUrl(link);
-        if (norm && isCrawlable(norm) && !visited.has(norm)) {
-          queue.push(norm);
-        }
+        if (norm && isCrawlable(norm) && !visited.has(norm)) queue.push(norm);
       }
     } catch (err) {
       console.warn(`  Error on ${url}: ${err.message}`);
@@ -132,7 +172,6 @@ async function extractMainContent(page) {
     }
   }
 
-  // Process queue with limited concurrency
   while (queue.length > 0) {
     const batch = [];
     while (batch.length < CONCURRENCY && queue.length > 0) {
@@ -143,19 +182,9 @@ async function extractMainContent(page) {
   }
 
   await browser.close();
-  console.log(`\nDone. ${pageCount} pages saved to ${OUTPUT_DIR}/`);
+  console.log(`\nCrawled ${pages.length} pages.`);
 
-  console.log('Committing and pushing docs to GitHub...');
-  try {
-    const date = new Date().toISOString().split('T')[0];
-    execSync('git add docs/', { cwd: __dirname, stdio: 'inherit' });
-    execSync(`git commit -m "chore: crawl docs.cycode.com (${date}, ${pageCount} pages)"`, {
-      cwd: __dirname,
-      stdio: 'inherit',
-    });
-    execSync('git push', { cwd: __dirname, stdio: 'inherit' });
-    console.log('Pushed to GitHub.');
-  } catch (err) {
-    console.warn('Git push failed (nothing new to commit, or push error):', err.message);
+  if (pages.length > 0) {
+    await pushToGitHub(octokit, pages);
   }
 })();

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/hackeral-cycode/cycode-docs-crawler#readme",
   "dependencies": {
+    "@octokit/rest": "^22.0.1",
     "@types/node": "^25.6.2",
     "playwright": "^1.60.0",
     "turndown": "^7.2.4"
