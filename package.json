@@ -1,0 +1,27 @@
+{
+  "name": "cycode-docs-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "login": "node login.js",
+    "crawl": "node crawl.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackeral-cycode/cycode-docs-crawler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hackeral-cycode/cycode-docs-crawler/issues"
+  },
+  "homepage": "https://github.com/hackeral-cycode/cycode-docs-crawler#readme",
+  "dependencies": {
+    "@types/node": "^25.6.2",
+    "playwright": "^1.60.0",
+    "turndown": "^7.2.4"
+  }
+}
