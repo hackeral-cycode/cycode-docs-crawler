@@ -64,69 +64,81 @@ async function extractMainContent(page) {
   return page.$eval('body', (b) => b.innerHTML);
 }
 
-// Push all collected files to GitHub in a single commit using the Git Data API
+const COMMIT_BATCH_SIZE = 100;
+const BLOB_DELAY_MS = 150; // sequential, one blob at a time
+
+async function createBlobWithRetry(octokit, content) {
+  while (true) {
+    try {
+      const { data: blob } = await octokit.git.createBlob({
+        owner: GITHUB_OWNER, repo: GITHUB_REPO,
+        content: Buffer.from(content).toString('base64'),
+        encoding: 'base64',
+      });
+      return blob.sha;
+    } catch (err) {
+      if (err.status === 403 && err.response?.headers?.['retry-after']) {
+        const wait = parseInt(err.response.headers['retry-after'], 10) * 1000;
+        console.log(`\n  Rate limited — waiting ${wait / 1000}s...`);
+        await new Promise((r) => setTimeout(r, wait));
+      } else {
+        throw err;
+      }
+    }
+  }
+}
+
+// Push all collected files to GitHub in batched commits using the Git Data API
 async function pushToGitHub(octokit, files) {
-  console.log(`\nPushing ${files.length} files to GitHub...`);
+  console.log(`\nPushing ${files.length} files to GitHub in batches of ${COMMIT_BATCH_SIZE}...`);
+
+  const date = new Date().toISOString().split('T')[0];
+  const totalBatches = Math.ceil(files.length / COMMIT_BATCH_SIZE);
 
   const { data: ref } = await octokit.git.getRef({
     owner: GITHUB_OWNER, repo: GITHUB_REPO, ref: `heads/${GITHUB_BRANCH}`,
   });
-  const latestCommitSha = ref.object.sha;
+  let currentCommitSha = ref.object.sha;
 
-  const { data: latestCommit } = await octokit.git.getCommit({
-    owner: GITHUB_OWNER, repo: GITHUB_REPO, commit_sha: latestCommitSha,
-  });
-  const baseTreeSha = latestCommit.tree.sha;
+  for (let b = 0; b < totalBatches; b++) {
+    const batch = files.slice(b * COMMIT_BATCH_SIZE, (b + 1) * COMMIT_BATCH_SIZE);
+    console.log(`\nBatch ${b + 1}/${totalBatches} — creating ${batch.length} blobs sequentially...`);
 
-  // Create blobs in batches to avoid GitHub secondary rate limits
-  console.log('Creating blobs...');
-  const BLOB_BATCH_SIZE = 10;
-  const BLOB_BATCH_DELAY_MS = 500;
-  const treeItems = [];
-  for (let i = 0; i < files.length; i += BLOB_BATCH_SIZE) {
-    const batch = files.slice(i, i + BLOB_BATCH_SIZE);
-    const items = await Promise.all(
-      batch.map(async ({ repoPath, content }) => {
-        const { data: blob } = await octokit.git.createBlob({
-          owner: GITHUB_OWNER, repo: GITHUB_REPO,
-          content: Buffer.from(content).toString('base64'),
-          encoding: 'base64',
-        });
-        return { path: repoPath, mode: '100644', type: 'blob', sha: blob.sha };
-      })
-    );
-    treeItems.push(...items);
-    process.stdout.write(`\r  ${treeItems.length}/${files.length} blobs created`);
-    if (i + BLOB_BATCH_SIZE < files.length) {
-      await new Promise((r) => setTimeout(r, BLOB_BATCH_DELAY_MS));
+    const treeItems = [];
+    for (const { repoPath, content } of batch) {
+      const sha = await createBlobWithRetry(octokit, content);
+      treeItems.push({ path: repoPath, mode: '100644', type: 'blob', sha });
+      process.stdout.write(`\r  ${treeItems.length}/${batch.length} blobs`);
+      await new Promise((r) => setTimeout(r, BLOB_DELAY_MS));
     }
+    console.log();
+
+    const { data: currentCommit } = await octokit.git.getCommit({
+      owner: GITHUB_OWNER, repo: GITHUB_REPO, commit_sha: currentCommitSha,
+    });
+    const { data: newTree } = await octokit.git.createTree({
+      owner: GITHUB_OWNER, repo: GITHUB_REPO,
+      base_tree: currentCommit.tree.sha,
+      tree: treeItems,
+    });
+    const start = b * COMMIT_BATCH_SIZE + 1;
+    const end = b * COMMIT_BATCH_SIZE + batch.length;
+    const { data: newCommit } = await octokit.git.createCommit({
+      owner: GITHUB_OWNER, repo: GITHUB_REPO,
+      message: `chore: crawl docs.cycode.com (${date}, pages ${start}-${end})`,
+      tree: newTree.sha,
+      parents: [currentCommitSha],
+    });
+    await octokit.git.updateRef({
+      owner: GITHUB_OWNER, repo: GITHUB_REPO,
+      ref: `heads/${GITHUB_BRANCH}`,
+      sha: newCommit.sha,
+    });
+    currentCommitSha = newCommit.sha;
+    console.log(`  Committed ${newCommit.sha.slice(0, 7)}`);
   }
-  console.log();
 
-  // Create a new tree
-  const { data: newTree } = await octokit.git.createTree({
-    owner: GITHUB_OWNER, repo: GITHUB_REPO,
-    base_tree: baseTreeSha,
-    tree: treeItems,
-  });
-
-  // Create a new commit
-  const date = new Date().toISOString().split('T')[0];
-  const { data: newCommit } = await octokit.git.createCommit({
-    owner: GITHUB_OWNER, repo: GITHUB_REPO,
-    message: `chore: crawl docs.cycode.com (${date}, ${files.length} pages)`,
-    tree: newTree.sha,
-    parents: [latestCommitSha],
-  });
-
-  // Update the branch ref
-  await octokit.git.updateRef({
-    owner: GITHUB_OWNER, repo: GITHUB_REPO,
-    ref: `heads/${GITHUB_BRANCH}`,
-    sha: newCommit.sha,
-  });
-
-  console.log(`Pushed to GitHub: ${newCommit.sha.slice(0, 7)}`);
+  console.log(`\nDone — ${totalBatches} commit(s) pushed to GitHub.`);
 }
 
 (async () => {
