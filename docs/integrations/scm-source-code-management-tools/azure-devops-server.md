@@ -1,0 +1,180 @@
+# Azure DevOps Server | Cycode Docs
+
+Source: https://docs.cycode.com/integrations/scm-source-code-management-tools/azure-devops-server
+
+---
+
+# Azure DevOps Server
+
+[](https://gitlab.com/cycodehq/documentation/cycode_docs/-/blob/main/src/content/integrations/scm-source-code-management-tools/azure-devops-server.md "Edit this page")
+
+Updated on Mar 30, 2026 • Published on Mar 30, 2026
+
+* * *
+
+## Overview [Copied!](#overview "Copy link to this section")
+
+Integrating Azure DevOps Server enables Cycode to scan and do the following:
+
+*   Review code access and permissions
+    
+*   Audit significant events
+    
+*   Identify insecure configurations
+    
+*   Identify code leaks
+    
+*   Monitor secrets
+    
+
+After successfully integrating with Azure, Cycode starts to scan your environment and apply its policies.
+
+**Supported Azure DevOps Server versions**
+
+The minimum supported on-prem version is Azure DevOps Server 2020 (v18).
+
+For full functionality (including builds and groups APIs), Azure DevOps Server 2022 (v19) is required.
+
+## Permissions [Copied!](#permissions "Copy link to this section")
+
+Permissions
+
+Why is Access Required?
+
+Basic access level in the Contributors security group
+
+Grants full access to manage all resources (however, doesn’t allow you to share image galleries)
+
+**MemberEntitlement Access Level** for either a **Basic** or **Visual Studio Subscriber** (with subscription assigned) (see image below)
+
+Required only for the user performing the integration itself.
+
+## Prerequisites [Copied!](#prerequisites "Copy link to this section")
+
+*   Verify that the following ports are open for Cycode: **443**.
+    
+*   Open inbound and outbound connectivity between Cycode IPs and the on-premises Azure DevOps instance on the following IPs:
+    
+    *   US SaaS:
+        
+        *   `34.230.110.76`
+        *   `54.205.205.122`
+        *   `18.209.26.95`
+        *   `34.74.159.168`
+        *   `3.226.104.48`
+    *   EU SaaS:
+        
+        *   `52.58.81.134`
+        *   `52.29.182.96`
+        *   `3.69.177.124`
+        *   `3.127.9.222`
+*   Verify that you have a Personal Access Token to enable Cycode to authenticate to your Azure DevOps Server.
+    
+
+### Create a Personal Access Token (PAT) [Copied!](#create-a-personal-access-token-pat "Copy link to this section")
+
+**To create a personal access token (PAT) in Azure DevOps Server**
+
+1.  Go to **User Security Settings**.
+    
+2.  Click **New Token**.
+    
+3.  Choose the relevant organization(s) to be integrated.
+    
+4.  Set the expiration date.
+    
+5.  Select the following scopes and permissions.
+    
+    Scope
+    
+    Permissions
+    
+    Code
+    
+    Full, Status
+    
+    Entitlements
+    
+    Read
+    
+    Identity
+    
+    Read
+    
+    Member Entitlement Management
+    
+    Read
+    
+    Project & Team
+    
+    Read & Write
+    
+    Pull Request Threads
+    
+    Read & Write
+    
+    Tokens
+    
+    Read & Manage
+    
+6.  Click **Create**.
+    
+
+## Integrate with the Azure DevOps Server [Copied!](#integrate-with-the-azure-devops-server "Copy link to this section")
+
+1.  In Cycode, go to **Settings > Integrations** and click **Add Integration**.
+    
+2.  In the Add Integration window, click **Code** in the left menu or search for Azure DevOps and click the **Azure DevOps Server** tile.
+    
+3.  In page 1 of the connection wizard, fill in the following values and click **Next**.
+    
+    Parameter
+    
+    Value
+    
+    **Integration name**
+    
+    Meaningful name for the integration
+    
+    **Select Broker**
+    
+    (Optional) If you’re using a Cycode Broker, select it from the list.
+    
+    **Instance URL**
+    
+    Instance URL of the Azure DevOps Server installation.
+    
+    **Enter access token**
+    
+    Apply the PAT you created as part of the prerequisites for the integration.
+    
+4.  In page 3 of the connection wizard, do the following:
+    
+    1.  If you’re integrating Azure DevOps server with Cycode as a non-admin user (limited access) type the name of the organization you want to connect and click **Connect organization**.
+        
+    2.  If you’re integrating Azure DevOps Server with Cycode as an admin user (full access), select the organization(s) you want Cycode to scan and click **Connect**.
+        
+        Note
+        
+        The Cycode integration will have the same access rights in the organization as your user.
+        
+        Cycode connects to your Azure DevOps account and retrieves the information about your available organizations and projects.
+        
+
+The last page of the connection wizard shows you the status of the integration. You can manage all of your Azure DevOps Server integrations from this page.
+
+Was this article helpful?
+
+Yes No
+
+Thanks for your feedback!
+
+## Help us improve this article
+
+×
+
+Need more information Inaccurate or irrelevant content Difficult to understand Missing/broken link Others
+
+Characters: 0/255
+
+Cancel Submit
