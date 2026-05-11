@@ -6,6 +6,7 @@ const { chromium } = require('playwright');
 const TurndownService = require('turndown');
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const SESSION_FILE = path.join(__dirname, 'session.json');
 const OUTPUT_DIR = path.join(__dirname, 'docs');
@@ -143,4 +144,18 @@ async function extractMainContent(page) {
 
   await browser.close();
   console.log(`\nDone. ${pageCount} pages saved to ${OUTPUT_DIR}/`);
+
+  console.log('Committing and pushing docs to GitHub...');
+  try {
+    const date = new Date().toISOString().split('T')[0];
+    execSync('git add docs/', { cwd: __dirname, stdio: 'inherit' });
+    execSync(`git commit -m "chore: crawl docs.cycode.com (${date}, ${pageCount} pages)"`, {
+      cwd: __dirname,
+      stdio: 'inherit',
+    });
+    execSync('git push', { cwd: __dirname, stdio: 'inherit' });
+    console.log('Pushed to GitHub.');
+  } catch (err) {
+    console.warn('Git push failed (nothing new to commit, or push error):', err.message);
+  }
 })();
