@@ -86,6 +86,12 @@ URL to the comment in the Jira issue where the violation was detected.
     *   Secrets removed from issues or comments, as they may still exist in the version history.
     *   Deleting a Jira issue or comment **does not automatically resolve** detected secrets within them. Manual review is still necessary.
 
+## Scope a Cycode project to Jira Cloud sites [Copied!](#scope-a-cycode-project-to-jira-cloud-sites "Copy link to this section")
+
+After Jira Cloud is integrated, the connected Jira sites are available as assets that you can include in the scope of a Cycode project. Adding sites to a project assigns the violations detected in them to that project, so the project members are responsible for remediating them.
+
+To include Jira Cloud sites in a project, follow the steps in [Create and configure a project](/cycode-projects/create-and-configure-a-project/) and select **Jira Cloud** as the asset source in the **Scope** step.
+
 ## View Jira data in Cycode [Copied!](#view-jira-data-in-cycode-1 "Copy link to this section")
 
 There are multiple ways to filter the Violations view and see the Jira data, so you can manage and resolve the violations that are detected.

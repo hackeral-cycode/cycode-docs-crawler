@@ -18,6 +18,14 @@ Integrating Microsoft Teams with Cycode enables scanning for secrets that may ha
 
 Each new integration is done per Microsoft 365 tenant. After the integration is complete, all the public Teams instances in the tenant are synced. For each Teams instance, all standard and shared channels are synced.
 
+Note
+
+Cycode Microsoft Teams alerting and secret scanning use Microsoft Entra ID (Azure AD) app registrations and Microsoft Graph API webhooks — not Office 365 Connectors. The retirement of Office 365 Connectors does not affect this integration. For Teams alerting destinations that previously relied on Office 365 incoming webhooks, use the Microsoft Workflows-based webhook flow.
+
+The Microsoft Teams integration operates at the tenant scope and requires access to all site collections; per-team or per-site scoping is not currently available. This applies to Teams alerting, Teams secret scanning, and the related SharePoint integration.
+
+The content of Microsoft Teams alerts sent by Cycode is not currently customizable per customer; fields cannot be added or removed from the alert message.
+
 ## Permissions [Copied!](#permissions "Copy link to this section")
 
 ### User [Copied!](#user "Copy link to this section")

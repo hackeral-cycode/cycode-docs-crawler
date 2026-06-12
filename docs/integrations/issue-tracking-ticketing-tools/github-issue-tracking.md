@@ -70,6 +70,10 @@ Cycode Ignored
 
 GitHub Closed
 
+### Workflow targeting [Copied!](#workflow-targeting "Copy link to this section")
+
+Workflows that open GitHub issues currently target a pre-selected repository. Dynamic per-repository assignment of the destination repository (for example, opening the issue in the same repo as the violation) is not currently supported. The Cycode GitHub app must already have the correct permissions on the destination repository, and the destination repository must be private.
+
 ## Integrate with GitHub issue tracking [Copied!](#integrate-with-github-issue-tracking "Copy link to this section")
 
 1.  Go to **Settings > Integrations**.

@@ -55,6 +55,10 @@ If your integration includes the **Apply Jira ticket status to Cycode tickets** 
 
 *   **jira-admins**
 
+Note
+
+The initial setup of the Jira to Cycde integration always requires an admin user, because Jira webhook creation is an admin-only operation. After the integration is configured, the admin role can be removed from the service user if no further configuration changes are planned. Non-admin users cannot perform the initial setup.
+
 ### Create an API token [Copied!](#create-an-api-token "Copy link to this section")
 
 1.  Sign into Atlassian with the service user account.
@@ -128,6 +132,8 @@ Note
 
 *   This option requires **global** Jira admin permissions
 *   If the Jira ticket ID changes in Jira, the old ID is displayed in the Violation card until it is manually updated.
+*   When a Jira ticket is permanently deleted in Jira, Cycode does not automatically update or remove the linked reference on the violation. The reference must be unlinked manually.
+*   Linked Jira tickets are not automatically resolved or closed when the corresponding Cycode violation is auto-resolved.
 
 This information is displayed in a dedicated **Ticket** column.
 
@@ -140,6 +146,14 @@ The custom fields settings also enables determining the Cycode status based not 
 Note
 
 Jira 2-way integration applies retroactively to tickets that were synced before the option was enabled.
+
+### Reconnect or update credentials [Copied!](#reconnect-or-update-credentials "Copy link to this section")
+
+You can re-authorize the Jira integration or update the API token directly from the Integrations UI without removing and re-adding the integration. Open the existing integration entry and use the re-authorization option to refresh the credentials.
+
+### Message format [Copied!](#message-format "Copy link to this section")
+
+The message format for Jira tickets created by Cycode workflows is not currently customizable.
 
 ### Integrate multiple Jira instances [Copied!](#integrate-multiple-jira-instances "Copy link to this section")
 

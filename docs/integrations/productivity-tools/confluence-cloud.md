@@ -45,6 +45,12 @@ Cycode scans only the spaces the user is authorized to view, along with their pa
     After you confirm the integration, the integrations area reloads and shows that Confluence is connected.
     
 
+## Scope a Cycode project to Confluence Cloud sites [Copied!](#scope-a-cycode-project-to-confluence-cloud-sites "Copy link to this section")
+
+After Confluence Cloud is integrated, the connected Confluence sites are available as assets that you can include in the scope of a Cycode project. Adding sites to a project assigns the violations detected in them to that project, so the project members are responsible for remediating them.
+
+To include Confluence Cloud sites in a project, follow the steps in [Create and configure a project](/cycode-projects/create-and-configure-a-project/) and select **Confluence Cloud** as the asset source in the **Scope** step.
+
 ## View Confluence data in Cycode [Copied!](#view-confluence-data-in-cycode "Copy link to this section")
 
 There are multiple ways to filter the Violations view and see the Confluence data, so you can manage and resolve the violations that are detected.

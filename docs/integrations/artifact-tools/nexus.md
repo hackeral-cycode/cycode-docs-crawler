@@ -20,6 +20,22 @@ Note
 
 The Nexus Repository connector doesn’t support scanning container images. If you want to scan container images, use the [Generic container registry integration](/integrations/artifact-tools/generic-container-registry-integration) .
 
+## Supported Nexus editions [Copied!](#supported-nexus-editions "Copy link to this section")
+
+Cycode supports **Sonatype Nexus Repository** (the commercial edition). Nexus OSS is not supported.
+
+## Configure container image scanning for Nexus Repository [Copied!](#configure-container-image-scanning-for-nexus-repository "Copy link to this section")
+
+To scan container images hosted inside Nexus, use the [generic connector integration](/docs/generic-container-registry-integration) .
+
+## Resolve private dependencies for SCA scans [Copied!](#resolve-private-dependencies-for-sca-scans "Copy link to this section")
+
+Cycode can resolve private packages hosted in your Nexus Repository when SCA scans are performed. This provides deeper visibility by identifying vulnerabilities in both the direct and transitive dependencies related to your private packages.
+
+Note
+
+This dependency resolution feature currently supports Maven, and NPM packages.
+
 ## Permissions [Copied!](#permissions "Copy link to this section")
 
 The following permissions are needed for integrating with Cycode:

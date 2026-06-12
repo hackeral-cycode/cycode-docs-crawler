@@ -96,6 +96,47 @@ Number of messages sent in Cursor’s **Chat / Ask mode**, used for asking quest
 
 The ratio of accepted Tab completions to total Tab completions is shown. Tab completions are Cursor’s autocomplete suggestions — short, inline code predictions that appear as the developer types. The developer presses **Tab** to accept or ignores/dismisses the suggestion.**Note**: Tab completions are tracked separately from lines generated — accepting a Tab completion does **not** count toward the Lines generated or Accepted lines metrics.
 
+### Skills executed and MCP servers [Copied!](#skills-executed-and-mcp-servers "Copy link to this section")
+
+Note
+
+The **Skills executed** and **MCP servers** sections are available only for tenants on the Cursor **Enterprise** plan. Tenants on lower Cursor plans will not see these sections in the developer card.
+
+The Cursor integration also reports the skills and MCP servers each developer invoked from Cursor during the selected date range. Cycode enriches this data by correlating it with the inventory of skills and MCP servers detected across your codebase.
+
+#### Skills executed [Copied!](#skills-executed "Copy link to this section")
+
+A list of skills the developer invoked from Cursor during the selected date range, with the execution count for each skill.
+
+Clicking a skill name opens the **Inventory → Skills** view, filtered by that skill’s name. Because the same skill name can appear in multiple repositories (for example, a `promptfoo-evals` skill defined under both `.claude/skills/` and a `plugins/` directory), the filter returns every location where that skill is defined.
+
+#### MCP servers [Copied!](#mcp-servers "Copy link to this section")
+
+A list of MCP servers the developer invoked from Cursor during the selected date range. The following fields are reported for each MCP server:
+
+Field
+
+Description
+
+**Server name**
+
+The MCP server the developer called (for example, `atlassian`, `slack`).
+
+**Calls**
+
+Total number of calls the developer made to this MCP server during the selected date range.
+
+**Tools used**
+
+The distinct tools (capabilities) on this MCP server that the developer invoked. Shows the total count followed by each tool name with its own call count (for example, `getJiraIssue` 4, `createJiraIssue` 3). When more tools were used than fit in the row, the remainder is summarized as `+N`.
+
+##### Inventory correlation
+
+Cycode correlates each MCP server reported by Cursor with the [MCP inventory](/inventory/application-insights/adlc-security#mcps) by matching the server endpoint:
+
+*   **When a match is found** — The developer card additionally shows the MCP server’s **authorization status** (**Authorized** or **Unauthorized**, based on your organization’s MCP governance policies). Clicking the server name opens its [inventory card](/inventory/application-insights/adlc-security#mcps) , where you can review the server type, URL, repositories where it was detected, labels, and evidence path.
+*   **When no match is found** — Only the fields in the table above are shown. No authorization status is displayed and the server name is not clickable.
+
 Was this article helpful?
 
 Yes No

@@ -230,6 +230,12 @@ Path to the comment in the format **Jira Data Center**→**Domain URL**→**Proj
     *   Files containing secrets that were deleted, as they may still be retrievable in the version history.
     *   Deleting a Jira issue, comment, or attachment **does not automatically resolve** detected secrets within them. Manual review is still necessary.
 
+## Scope a Cycode project to Jira Data Center instances [Copied!](#scope-a-cycode-project-to-jira-data-center-instances "Copy link to this section")
+
+After Jira Data Center is integrated, the connected instances are available as assets that you can include in the scope of a Cycode project. Adding instances to a project assigns the violations detected in them to that project, so the project members are responsible for remediating them.
+
+To include Jira Data Center instances in a project, follow the steps in [Create and configure a project](/cycode-projects/create-and-configure-a-project/) and select **Jira Data Center** as the asset source in the **Scope** step.
+
 ## View Jira data in Cycode [Copied!](#view-jira-data-in-cycode "Copy link to this section")
 
 There are multiple ways to filter the Violations view and see the Jira data, so you can manage and resolve the violations that are detected. **To test the integration and confirm that you can see the relevant data in Cycode**

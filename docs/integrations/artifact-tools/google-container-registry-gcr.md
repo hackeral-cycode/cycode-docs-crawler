@@ -24,6 +24,10 @@ GCR is part of the GCP integration and requires the same [permissions](/integrat
 
 GCR is integrated with Cycode using the same procedure documented [here](/integrations/cloud-and-infrastructure-services/google-cloud/) (the integration is located under **Settings > Integrations > Artifacts**).
 
+## Cost considerations [Copied!](#cost-considerations "Copy link to this section")
+
+Scanning images stored in GCR can incur costs on the Google Cloud side — primarily data egress charges and Container Registry / Artifact Registry API usage — for each container that is pulled and scanned. These charges are billed by Google to your GCP account; they are not Cycode charges. Review your GCP pricing before enabling large-scale GCR scanning.
+
 ## Configuring Container Image Security Scanning [Copied!](#configuring-container-image-security-scanning "Copy link to this section")
 
 Once you’ve completed integrating container image/artifact registries with Cycode, you’ll need to [configure the container image security scanning.](/integrations/artifact-tools/google-container-registry-gcr)

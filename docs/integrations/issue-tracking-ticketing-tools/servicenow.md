@@ -20,6 +20,12 @@ Note
 
 This is a one-way integration from the third-party API to Cycode.
 
+## Scope [Copied!](#scope "Copy link to this section")
+
+The Cycode ServiceNow integration is designed for **Incident Response** records (records starting with `INC`). ServiceNow GRC is not supported.
+
+Data sent from Cycode to ServiceNow is delivered as JSON. Cycode does not retain or display past outbound events to ServiceNow; only an API access token is used to fetch the data on the ServiceNow side.
+
 ## Permissions [Copied!](#permissions "Copy link to this section")
 
 You need the following permissions to integrate with Cycode.

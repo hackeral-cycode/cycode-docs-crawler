@@ -16,6 +16,12 @@ Integrating scanning in Slack enables Cycode to scan for secrets that may have b
 
 After successfully integrating, you can organize and track relevant information for your Slack integration.
 
+## Scope [Copied!](#scope "Copy link to this section")
+
+Slack secret scanning automatically covers **all public channels** of the connected Slack workspace. Selecting a subset of specific channels is not supported.
+
+Direct messages and private channels are not natively scanned. To scan that content, export it from Slack and run Cycode CLI against the exported files.
+
 ## Permissions [Copied!](#permissions "Copy link to this section")
 
 These are the permissions required for integrating Slack Scanning with Cycode:

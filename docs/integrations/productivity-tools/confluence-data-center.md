@@ -222,6 +222,12 @@ Path to the file in the format **Confluence** > **Domain URL** > **Space** > **P
     *   Attachments containing secrets that were removed, as they may still be accessible in the version history.
     *   Deleting a Confluence entity (page, blog, comment, attachment) does not automatically resolve detected secrets within it. Manual review is still necessary.
 
+## Scope a Cycode project to Confluence Data Center instances [Copied!](#scope-a-cycode-project-to-confluence-data-center-instances "Copy link to this section")
+
+After Confluence Data Center is integrated, the connected instances are available as assets that you can include in the scope of a Cycode project. Adding instances to a project assigns the violations detected in them to that project, so the project members are responsible for remediating them.
+
+To include Confluence Data Center instances in a project, follow the steps in [Create and configure a project](/cycode-projects/create-and-configure-a-project/) and select **Confluence Data Center** as the asset source in the **Scope** step.
+
 ## View Confluence data in Cycode [Copied!](#view-confluence-data-in-cycode "Copy link to this section")
 
 There are multiple ways to filter the Violations view and see the Confluence data, so you can manage and resolve the violations that are detected. This section describes one way to access the data.
