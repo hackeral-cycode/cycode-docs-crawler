@@ -39,6 +39,10 @@ Please make sure you copy and store the Identifier you provided. You will need i
 
 4.  Copy the API token and store it somewhere safe.
 
+## Limitations [Copied!](#limitations "Copy link to this section")
+
+The HackerOne integration does not fully support vulnerability ownership mapping. Repository information is displayed in the Cycode violation when HackerOne returns it, but a complete mapping from a HackerOne report to a specific repository or owner is a known gap.
+
 ## FAQs [Copied!](#faqs "Copy link to this section")
 
 ### How are policy names set for HackerOne? [Copied!](#how-are-policy-names-set-for-hackerone "Copy link to this section")

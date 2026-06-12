@@ -24,20 +24,51 @@ Integrating Bitbucket enables Cycode to scan your code and do the following:
 
 After successfully integrating, Cycode starts pulling the data from your environment and running its policies.
 
-### Authentication options [Copied!](#authentication-options "Copy link to this section")
+## Prerequisites [Copied!](#prerequisites "Copy link to this section")
 
-Cycode supports integrating with Bitbucket using the following authentication methods:
+*   Cycode only integrates with Bitbucket workspaces. Verify that your integration user has the necessary permissions (workspace owner or equivalent admin role) to approve these integrations and generate an API token with the required scopes.
 
-*   OAuth identification
-*   API token
+## Authentication methods [Copied!](#authentication-methods "Copy link to this section")
 
-### Prerequisites [Copied!](#prerequisites "Copy link to this section")
+Cycode supports the following authentication methods for Bitbucket.
 
-Cycode only integrates with Bitbucket workspaces. Verify that your integration user has the necessary permissions (workspace owner or equivalent admin role) to approve these integrations and generate an API token with the required scopes.
+Method
 
-### Permissions [Copied!](#permissions "Copy link to this section")
+Description
 
-If the integration will use an API token, it requires the following permissions to connect with your Bitbucket account.
+OAuth identification
+
+(Recommended) Authorize Cycode as an OAuth application in Bitbucket. Permissions are determined by the Cycode OAuth app you select during integration (see [OAuth application variants](#oauth-application-variants) below).
+
+API token
+
+Authenticate with a Bitbucket [API token](https://support.atlassian.com/bitbucket-cloud/docs/create-an-api-token/) generated for the integration user. Permissions are scoped via the token’s selected access scopes (see [Permissions for the API token method](#permissions-for-the-api-token-method) below). API tokens are the recommended replacement for the deprecated app password.
+
+## Permissions [Copied!](#permissions "Copy link to this section")
+
+### OAuth application variants [Copied!](#oauth-application-variants "Copy link to this section")
+
+When you use OAuth identification, you select one of the following Cycode applications during integration. Your choice determines the access granted in Bitbucket.
+
+Application
+
+Description
+
+Default
+
+Gives Cycode read and write access in Bitbucket, and installs webhooks for event-based detection (required for features like PR scanning and other automated workflows).
+
+Read-only
+
+Gives Cycode read access in Bitbucket to support repository discovery and scanning for violations. Webhooks are not installed automatically. For setup steps, see [Add webhooks for OAuth read-only authentication](#add-webhooks-for-oauth-read-only-authentication) below.
+
+Extended
+
+Gives Cycode the same access as the default app, and also enables Cycode to read the branch protection configuration data.
+
+### Permissions for the API token method [Copied!](#permissions-for-the-api-token-method "Copy link to this section")
+
+If the integration uses an API token, it requires the following permissions to connect with your Bitbucket account.
 
 Permissions
 
@@ -99,9 +130,13 @@ Read and Write
 
 Automatically set up real-time detection for new events such as repository changes.
 
-## Connect Bitbucket to Cycode [Copied!](#connect-bitbucket-to-cycode "Copy link to this section")
+## Integrate with Bitbucket [Copied!](#integrate-with-bitbucket "Copy link to this section")
 
-### OAuth authentication [Copied!](#oauth-authentication "Copy link to this section")
+Tip
+
+When integrating with OAuth, comments in pull requests are posted under the identity of the user who authorized the integration. We recommend creating a dedicated “Cycode” service account to ensure correct attribution and to prevent the integration from breaking if that user leaves.
+
+### Integrate using OAuth identification [Copied!](#integrate-using-oauth-identification "Copy link to this section")
 
 1.  Go to **Settings** > **Integrations** and click **Add Integration**.
     
@@ -110,29 +145,7 @@ Automatically set up real-time detection for new events such as repository chang
 3.  In page 1 of the connector wizard, do the following:
     
     1.  Select **OAuth identification**.
-        
-    2.  Select the type of Cycode application that should be used for the integration:
-        
-        Application
-        
-        Description
-        
-        Default
-        
-        Gives Cycode read and write access in Bitbucket, and installs webhooks for event-based detection (required for features like PR scanning and other automated workflows).
-        
-        Read-only
-        
-        Gives Cycode read access in Bitbucket to support repository discovery and scanning for violations.
-        
-        Note
-        
-        For read-only access, you must create webhooks manually as described below in [Add webhooks for OAuth read-only authentication](#add-webhooks-for-oauth-read-only-authentication).
-        
-        Extended
-        
-        Gives Cycode the same access as the default app, and also enables Cycode to read the branch protection configuration data.
-        
+    2.  Select the Cycode application you want to use for the integration. For a description of each option, see [OAuth application variants](#oauth-application-variants) above.
 4.  Click **Next**.
     
 5.  If you are redirected to the Bitbucket sign-in page, authenticate to Bitbucket and then in the **Confirm access to your account** page, click **Grant access**.
@@ -195,9 +208,9 @@ To enable event-based detection such as PR activity and repository changes, you 
     
 4.  Click **Save**.
 
-### API token [Copied!](#api-token "Copy link to this section")
+### Integrate using an API token [Copied!](#integrate-using-an-api-token "Copy link to this section")
 
-API tokens are the recommended replacement for the deprecated app password. Ensure the token is created with all the permissions listed in [Permissions](/integrations/scm-source-code-management-tools/bitbucket#permissions) .
+Ensure the token is created with all the permissions listed in [Permissions for the API token method](#permissions-for-the-api-token-method) above.
 
 Note
 

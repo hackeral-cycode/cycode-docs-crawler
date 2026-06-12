@@ -20,10 +20,6 @@ The sync mechanism ensures that a violation is updated only when its status chan
 
 (Bring Your Own Storage (BYOS) isn’t currently supported with the custom connector.)
 
-### Supported software ecosystems [Copied!](#supported-software-ecosystems "Copy link to this section")
-
-For a complete list of software ecosystems that Cycode supports, go to [Supported ecosystems/package managers](/scanners/ast-application-security-testing/sca-software-composition-analysis/supported-ecosystems-and-package-managers/) .
-
 ### Configuration parameters [Copied!](#configuration-parameters "Copy link to this section")
 
 Parameter
@@ -153,6 +149,10 @@ curl -X POST "your-presigned-url" \
   -F "X-Amz-Date=your-amz-date" \
   -F "file=@your_file.json"
 ```
+
+## Check upload history and errors [Copied!](#check-upload-history-and-errors "Copy link to this section")
+
+After you push data, you can retrieve the history of your uploads and find out why specific violations failed to import. See [Get custom connector upload history and errors](/integrations/security-tools/create-a-custom-connector/get-custom-connector-upload-history/) .
 
 ## JSON file structure [Copied!](#json-file-structure "Copy link to this section")
 

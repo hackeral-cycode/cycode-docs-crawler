@@ -20,7 +20,7 @@ You can integrate GitHub Enterprise with Cycode to enable scanning your code and
     
 *   Audit significant events
     
-*   Iidentify insecure configurations
+*   Identify insecure configurations
     
 *   Identify code leaks
     
@@ -33,7 +33,41 @@ Note
 
 This integration also supports **GitHub Enterprise Cloud** ([ghe.com](http://ghe.com) ).
 
-### Permissions [Copied!](#permissions "Copy link to this section")
+## Prerequisites [Copied!](#prerequisites "Copy link to this section")
+
+*   Cycode only integrates with a GitHub Server administrator account. Verify that you have an admin account set up.
+    
+*   Verify that the following ports are open: `443` (or the current default port you’ve configured in your organization), `9000`, and `9443`.
+    
+*   Open inbound and outbound connectivity between Cycode IPs and the on-premises GitHub Enterprise instance on the following IPs:
+    
+    *   *   US SaaS:
+            
+            *   `34.230.110.76`
+            *   `54.205.205.122`
+            *   `18.209.26.95`
+            *   `3.226.104.48`
+            *   `34.74.159.168`
+        *   EU SaaS:
+            
+            *   `52.58.81.134`
+            *   `52.29.182.96`
+            *   `3.69.177.124`
+            *   `3.127.9.222`
+
+## Authentication methods [Copied!](#authentication-methods "Copy link to this section")
+
+Cycode supports the following authentication method for GitHub Enterprise Server.
+
+Method
+
+Description
+
+GitHub App
+
+Install a custom Cycode GitHub App on your GitHub Enterprise Server instance through a [Cycode Broker](/cycode-settings/cycode-broker/) . The app is generated from a manifest that Cycode provides, then installed on your GHES instance. Unlike GitHub Cloud, GHES customers don’t choose between Default and Read-only variants; the integration uses a single custom app with the full-permission set listed in [Permissions](#permissions) below.
+
+## Permissions [Copied!](#permissions "Copy link to this section")
 
 The following table lists the permissions required to integrate with Cycode.
 
@@ -242,28 +276,6 @@ Track pull request commit statuses for inventory and discovery
 Team
 
 Track team events for access review, inventory, and discovery
-
-### Prerequisites [Copied!](#prerequisites "Copy link to this section")
-
-*   Cycode only integrates with a GitHub Server administrator account. Verify that you have an admin account set up.
-    
-*   Verify that the following ports are open: `443` (or the current default port you’ve configured in your organization), `9000`, and `9443`.
-    
-*   Open inbound and outbound connectivity between Cycode IPs and the on-premises GitHub Enterprise instance on the following IPs:
-    
-    *   *   US SaaS:
-            
-            *   `34.230.110.76`
-            *   `54.205.205.122`
-            *   `18.209.26.95`
-            *   `3.226.104.48`
-            *   `34.74.159.168`
-        *   EU SaaS:
-            
-            *   `52.58.81.134`
-            *   `52.29.182.96`
-            *   `3.69.177.124`
-            *   `3.127.9.222`
 
 ## Integrate with GitHub Enterprise Server [Copied!](#integrate-with-github-enterprise-server "Copy link to this section")
 

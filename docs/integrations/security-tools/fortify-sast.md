@@ -52,7 +52,7 @@ API keys provide access to all the applications in your Fortify tenant. You can 
 
 ## Connect Fortify to Cycode [Copied!](#connect-fortify-to-cycode "Copy link to this section")
 
-### Get the client ID and client secret [Copied!](#get-the-client-id-and-client-secret "Copy link to this section")
+### Get the API Token and Client Secret [Copied!](#get-the-api-token-and-client-secret "Copy link to this section")
 
 1.  Sign in to the Fortify console as an administrator.
     
@@ -79,7 +79,7 @@ API keys provide access to all the applications in your Fortify tenant. You can 
     
     ![](/assets/image%28557%29.png)
     
-4.  Store the client secret and client ID in a safe location.
+4.  Get the API Token and Client Secret.\`\`\`
     
 
 ### Select a data center [Copied!](#select-a-data-center "Copy link to this section")

@@ -39,6 +39,7 @@ CNAPP
     *   Create: reports
     *   Read: project
     *   Read: resources
+    *   Read: network\_exposure
 *   Client ID and Client Secret with permissions to pull vulnerabilities from relevant Wiz projects
     
 *   API endpoint URL
@@ -70,6 +71,16 @@ resources
 
 Read
 
+network\_exposure
+
+Read
+
+Note
+
+The **Create: reports** permission is required because Cycode generates a downloadable Wiz report as part of its ingestion flow.
+
+If you plan to ingest SAST findings from Wiz, your Wiz tenant needs a **Wiz Code** license (not Wiz Cloud) — SAST findings now appear in the Wiz Code module.
+
 ## Setup [Copied!](#setup "Copy link to this section")
 
 ### Get the API Endpoint URL [Copied!](#get-the-api-endpoint-url "Copy link to this section")
@@ -94,6 +105,12 @@ Navigate to your user profile and copy the API Endpoint URL.
     
 6.  Copy the Client ID and Client Secret and store them somewhere safe.
     
+
+## Top Use Cases [Copied!](#top-use-cases "Copy link to this section")
+
+![](/assets/wiz-runtime-context-violations.png)
+
+![](/assets/wiz-security-graph-context.png)
 
 ## FAQs [Copied!](#faqs "Copy link to this section")
 

@@ -43,6 +43,10 @@ Bug bounty
     
 3.  Click **Connect**.
 
+## Limitations [Copied!](#limitations "Copy link to this section")
+
+The Bugcrowd integration does not fully support vulnerability ownership mapping. Repository information is shown in the Cycode violation when Bugcrowd returns it, but a complete mapping from a Bugcrowd submission to a specific repository or owner is a known gap.
+
 Was this article helpful?
 
 Yes No

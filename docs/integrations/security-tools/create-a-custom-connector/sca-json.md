@@ -142,7 +142,7 @@ The following values are supported:
 
 Enum values
 
-No
+Yes
 
 `code_snippet`
 
@@ -160,7 +160,9 @@ String
 
 No
 
-\* See [Supported software ecosystems](/integrations/security-tools/create-a-custom-connector/#supported-software-ecosystems) .
+### Supported software ecosystems [Copied!](#supported-software-ecosystems "Copy link to this section")
+
+For a complete list of software ecosystems that Cycode supports, go to [Supported ecosystems/package managers](/scanners/ast-application-security-testing/sca-software-composition-analysis/supported-ecosystems-and-package-managers/) .
 
 ## Sample JSON file [Copied!](#sample-json-file "Copy link to this section")
 

@@ -12,7 +12,7 @@ Updated on Dec 1, 2024 • Published on Nov 25, 2024
 
 * * *
 
-## Introduction [Copied!](#introduction "Copy link to this section")
+## Overview [Copied!](#overview "Copy link to this section")
 
 Integrating GitLab Cloud enables Cycode to scan your code and to:
 
@@ -24,6 +24,30 @@ Integrating GitLab Cloud enables Cycode to scan your code and to:
 
 After successfully integrating, Cycode starts pulling the data from your environment and running its policies.
 
+🚧 Block merge requires GitLab Ultimate
+
+Cycode’s **Block merge** feature for GitLab relies on GitLab’s External Status Checks API, which is available only on **GitLab Ultimate**; it is not available on GitLab Free or Premium. For details, see [Configure Pull Requests Scanners](/developer-experience/developers/pull-request-pr-scanning/pull-request-pr-scanners) .
+
+## Prerequisites [Copied!](#prerequisites "Copy link to this section")
+
+*   The integration user must have group-level permissions (Owner or Maintainer) on every GitLab group you want Cycode to monitor. Cycode only integrates with GitLab **groups**, not personal namespaces.
+
+## Authentication methods [Copied!](#authentication-methods "Copy link to this section")
+
+Cycode supports the following authentication methods for GitLab.
+
+Method
+
+Description
+
+OAuth Identification
+
+(Recommended) Authorize Cycode as an OAuth application in GitLab. Best practice is to create a dedicated `Cycode` GitLab user for the integration so PR comments aren’t attributed to an individual employee.
+
+Personal access token (PAT)
+
+Authenticate with a [personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html) generated for the integration user with read/write API scope.
+
 ## Permissions [Copied!](#permissions "Copy link to this section")
 
 These are the permissions required for integrating with Cycode:
@@ -32,36 +56,25 @@ Permissions
 
 Cycode
 
-Why is Access Required?
+Applies to
 
-GitLab groups
+Why is access required?
 
-Group-Level Permissions
+API access scope
 
-Cycode only integrates with GitLab **groups**. Verify that you have GitLab group-level permissions to approve these integrations.
+`api` (complete read/write)
 
-GitLab Personal Access Token
+All methods
 
-Personal access tokens are used for authenticating with the GitLab API and with Git using HTTP Basic Authentication.
+Granted to the Cycode OAuth application (during authorization) or to the personal access token (at creation time). The `api` scope provides complete read/write access to the API, including all groups and projects, the container registry, and the package registry.
 
-Personal access token scope for API
+## Integrate with GitLab [Copied!](#integrate-with-gitlab "Copy link to this section")
 
-Read/write access
-
-Grants complete read/write access to the API, including all groups and projects, the container registry, and the package registry.
-
-## Integrating with GitLab [Copied!](#integrating-with-gitlab "Copy link to this section")
-
-Cycode enables you to integrate with GitLab using two authentication methods:
-
-*   OAuth Identification
-*   Access Token
-
-### Integrating with GitLab using OAuth [Copied!](#integrating-with-gitlab-using-oauth "Copy link to this section")
+### Integrate using OAuth [Copied!](#integrate-using-oauth "Copy link to this section")
 
 Tip
 
-When implementing an OAuth integration, the comments within the PR Scan will be issued with the user that’s being integrated; therefore, the best practice during integration would be to create a dedicated “Cycode” user for the integration.
+When integrating with OAuth, comments in pull requests are posted under the identity of the user who authorized the integration. We recommend creating a dedicated “Cycode” service account to ensure correct attribution and to prevent the integration from breaking if that user leaves.
 
 1.  Go to **Settings > Integrations**.
 
@@ -96,7 +109,7 @@ Minimizing the integration wizard won’t halt data collection and you can retur
 
 ![](/assets/integration4.png)
 
-### Integrating with GitLab using a personal access token [Copied!](#integrating-with-gitlab-using-a-personal-access-token "Copy link to this section")
+### Integrate using a personal access token [Copied!](#integrate-using-a-personal-access-token "Copy link to this section")
 
 1.  Create a personal access token in GitLab with Read/Write access.
     
@@ -134,7 +147,7 @@ Minimizing the integration wizard won’t halt data collection and you can retur
 
 ![](/assets/integration4.png)
 
-## Viewing the status of your monitored organizations and their scans [Copied!](#viewing-the-status-of-your-monitored-organizations-and-their-scans "Copy link to this section")
+## View the status of your monitored organizations and their scans [Copied!](#view-the-status-of-your-monitored-organizations-and-their-scans "Copy link to this section")
 
 After you’ve connected your organizations (using either authentication method), you’ll see the list of connected organizations and their current status.
 

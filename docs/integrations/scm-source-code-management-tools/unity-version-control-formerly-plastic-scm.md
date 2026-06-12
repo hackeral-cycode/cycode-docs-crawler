@@ -18,7 +18,7 @@ The Unity Version Control (formerly Plastic SCM) connector offers a unique metho
 
 After Unity Version Control is integrated, the repositories are synced in Cycode. Afterwards, members can create a project in Cycode, associate the repository with it, and run the Cycode CLI locally. The results of this local scan can then be associated with the specific project in Cycode.
 
-### Connect Unity Version Control with Cycode [Copied!](#connect-unity-version-control-with-cycode "Copy link to this section")
+## Integrate with Unity Version Control [Copied!](#integrate-with-unity-version-control "Copy link to this section")
 
 1.  Go to **Settings > Integrations** and click **Add Integration**.
     

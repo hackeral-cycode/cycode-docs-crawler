@@ -277,6 +277,10 @@ Cycode can only integrate Azure DevOps projects that the integration user can ac
 
 ## Integrate Azure DevOps with Cycode [Copied!](#integrate-azure-devops-with-cycode "Copy link to this section")
 
+Tip
+
+When integrating with OAuth, comments in pull requests are posted under the identity of the user who authorized the integration. We recommend creating a dedicated “Cycode” service account to ensure correct attribution and to prevent the integration from breaking if that user leaves.
+
 1.  Go to **Settings > Integrations** and click **Add Integration**.
     
 2.  In the Add Integration window, click **Code** in the left menu or search for Azure DevOps and click the **Azure DevOps** tile.

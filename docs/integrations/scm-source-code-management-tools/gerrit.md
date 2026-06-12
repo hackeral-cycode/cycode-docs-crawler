@@ -29,28 +29,6 @@ Integrating enables Cycode to scan your code and:
 
 After successfully integrating, Cycode starts scanning the data from your environment and applying its policies.
 
-## Permissions [Copied!](#permissions "Copy link to this section")
-
-These are the permissions required for integrating with Cycode. The type of permissions required depend on whether the user is an **admin level user** or a **member level user**.
-
-User type
-
-Comments
-
-Permissions
-
-**Admin Minimum Permissions**
-
-The following permissions must be provided to the admin user that will be used to integrate Cycode.
-
-Registering webhook configurations (for `All-Projects`)Syncing all teams (including the Administrators team)Identifying Gerrit admin users (related to the bullet above)Access to all repositories
-
-**Member Minimum Permissions**
-
-To integrate with Gerrit without an admin account, the user will need to have the following permissions.
-
-`READ` permission for `refs/*` reference in the relevant repos This gives the user permission to get repository data (commits, pull requests, etc.)In addition, this grants the user permission to write comments in pull requests **Note**: it is recommended to configure the permission in the `All-Projects`repository, as this will ensure all repositories inherit these permissions.Having member permissions causes a limitation regarding teams - the non-admin user will be able to get data for teams of which they are a member. This means that team data in Cycode will be limited as well.
-
 ## Prerequisites [Copied!](#prerequisites "Copy link to this section")
 
 *   Before integrating Gerrit with Cycode, users will need to install the [Webhooks plugin](https://gerrit.googlesource.com/plugins/webhooks/) on their Gerrit instance. The plugin will require the following configuration:
@@ -89,9 +67,47 @@ Note
 
 For the latest list of Cycode IP addresses, go to this FAQ page in the knowledge base.
 
-## Integrating Gerrit [Copied!](#integrating-gerrit "Copy link to this section")
+## Authentication methods [Copied!](#authentication-methods "Copy link to this section")
 
-### Using an admin-level user [Copied!](#using-an-admin-level-user "Copy link to this section")
+Cycode supports the following authentication method for Gerrit.
+
+Method
+
+Description
+
+HTTP Basic (username + password)
+
+Authenticate with a Gerrit user account’s username and HTTP password. The user account you provide determines the integration’s effective scope (admin-level or member-level); see [Permissions](#permissions) below for the difference between the two access levels.
+
+## Permissions [Copied!](#permissions "Copy link to this section")
+
+These are the permissions required for integrating with Cycode. The type of permissions required depend on whether the user is an **admin level user** or a **member level user**.
+
+User type
+
+Comments
+
+Permissions
+
+**Admin Minimum Permissions**
+
+The following permissions must be provided to the admin user that will be used to integrate Cycode.
+
+Registering webhook configurations (for `All-Projects`)Syncing all teams (including the Administrators team)Identifying Gerrit admin users (related to the bullet above)Access to all repositories
+
+**Member Minimum Permissions**
+
+To integrate with Gerrit without an admin account, the user will need to have the following permissions.
+
+`READ` permission for `refs/*` reference in the relevant repos This gives the user permission to get repository data (commits, pull requests, etc.)In addition, this grants the user permission to write comments in pull requests **Note**: it is recommended to configure the permission in the `All-Projects`repository, as this will ensure all repositories inherit these permissions.Having member permissions causes a limitation regarding teams - the non-admin user will be able to get data for teams of which they are a member. This means that team data in Cycode will be limited as well.
+
+## Integrate with Gerrit [Copied!](#integrate-with-gerrit "Copy link to this section")
+
+Tip
+
+When integrating with a user account, comments in pull requests are posted under the identity of that user. We recommend creating a dedicated “Cycode” service account to ensure correct attribution and to prevent the integration from breaking if that user leaves.
+
+### Use an admin-level user [Copied!](#use-an-admin-level-user "Copy link to this section")
 
 Important
 
@@ -130,7 +146,7 @@ The following permissions must be provided to the admin user that will be used t
 9.  When completed, click **Done**. You should now see the integration appear in the list of integrations.
     
 
-### Using a member level user [Copied!](#using-a-member-level-user "Copy link to this section")
+### Use a member-level user [Copied!](#use-a-member-level-user "Copy link to this section")
 
 Important
 

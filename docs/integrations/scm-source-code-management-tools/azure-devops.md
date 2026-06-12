@@ -31,7 +31,7 @@ Integrating Azure DevOps enables Cycode to scan your code and do the following:
 
 After successfully integrating with Azure, Cycode starts scanning the data from your environment and running its policies.
 
-### Prerequisites [Copied!](#prerequisites "Copy link to this section")
+## Prerequisites [Copied!](#prerequisites "Copy link to this section")
 
 *   If this is your first integration with Azure DevOps, your Microsoft Entra tenant admin must install the Cycode Azure DevOps app and grant admin consent for the organization. For more information, go to the [Microsoft docs](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/connect-organization-to-azure-ad?view=azure-devops) .
     
@@ -319,7 +319,7 @@ Note
 
 To see the access level for a project, hover over the icon in the Accessible Projects column in the connector wizard.
 
-## Integrate Azure DevOps with Cycode [Copied!](#integrate-azure-devops-with-cycode "Copy link to this section")
+## Integrate with Azure DevOps [Copied!](#integrate-with-azure-devops "Copy link to this section")
 
 1.  Go to **Settings > Integrations** and click **Add Integration**.
     

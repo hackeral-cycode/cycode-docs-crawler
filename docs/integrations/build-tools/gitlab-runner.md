@@ -18,7 +18,7 @@ GitLab Runner are part of the GitLab integration and require the same [permissio
 
 ## Integrating with Cycode [Copied!](#integrating-with-cycode "Copy link to this section")
 
-To integrate GitLab Runner with Cycode, follow the integration steps described in the [GitLab](/integrations/scm-source-code-management-tools/gitlab#integrating-with-gitlab) integration.
+To integrate GitLab Runner with Cycode, follow the integration steps described in the [GitLab](/integrations/scm-source-code-management-tools/gitlab#integrate-with-gitlab) integration.
 
 You can also integrate the Cycode CLI directly into GitLab Runner by following the steps outlined in the [CLI Integration with GitLab Runner](/developer-experience/developers/cycode-cli/integrate-the-cycode-cli-with-gitlab-runner) guide
 

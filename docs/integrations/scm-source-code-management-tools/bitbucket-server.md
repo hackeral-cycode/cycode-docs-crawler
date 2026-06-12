@@ -29,20 +29,6 @@ Integrating Bitbucket Server enables Cycode to scan your code and to:
 
 Cycode can integrate with multiple Bitbucket servers. After successfully integrating, Cycode starts scanning your environment and running its policies.
 
-## Permissions [Copied!](#permissions "Copy link to this section")
-
-All permissions required for integrating Bitbucket with Cycode are detailed [here](/integrations/scm-source-code-management-tools/bitbucket#permissions) .
-
-These are the specific permissions required for integrating with Cycode:
-
-Permissions
-
-Why is Access Required?
-
-Bitbucket Server administrator account
-
-Cycode can only be integrated with a Bitbucket Server administrator account. Verify that you have the right permissions to approve these integrations before proceeding.
-
 ## Prerequisites [Copied!](#prerequisites "Copy link to this section")
 
 *   You have to specify the Cycode URL and to paste the token generated in the Cycode web application.
@@ -63,7 +49,45 @@ Cycode can only be integrated with a Bitbucket Server administrator account. Ver
 *   Syslog can also be integrated by configuring log forwarding on the instance itself. To enable this, open ports for Syslog in addition to HTTPS (443). This enables Cycode to see activities such as clones and zip downloads
     
 
+## Authentication methods [Copied!](#authentication-methods "Copy link to this section")
+
+Cycode supports the following authentication methods for Bitbucket Server.
+
+Method
+
+Description
+
+OAuth identification
+
+(Recommended) Register an application link on your Bitbucket Server instance to create a Consumer Key and Consumer Secret, and authorize Cycode via the OAuth flow. For setup steps, see [Integrate with Bitbucket Server](#integrate-with-bitbucket-server) below.
+
+Personal access token (PAT)
+
+Authenticate with a Bitbucket Server [personal access token](https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html) generated for the integration user. The token is sent as a bearer token; no application link is required.
+
+## Permissions [Copied!](#permissions "Copy link to this section")
+
+All permissions required for integrating Bitbucket with Cycode are detailed [here](/integrations/scm-source-code-management-tools/bitbucket#permissions) .
+
+These are the specific permissions required for integrating with Bitbucket Server:
+
+Permissions
+
+Applies to
+
+Why is access required?
+
+Bitbucket Server administrator account
+
+All methods
+
+Cycode can only be integrated with a Bitbucket Server administrator account. Verify that you have the right permissions to approve these integrations before proceeding.
+
 ## Integrate with Bitbucket Server [Copied!](#integrate-with-bitbucket-server "Copy link to this section")
+
+Tip
+
+When integrating with OAuth, comments in pull requests are posted under the identity of the user who authorized the integration. We recommend creating a dedicated “Cycode” service account to ensure correct attribution and to prevent the integration from breaking if that user leaves.
 
 1.  Go to **Settings > Integrations** and click **Add Integration** .
     
@@ -78,7 +102,7 @@ Cycode can only be integrated with a Bitbucket Server administrator account. Ver
 6.  Click **Authorize**. After you authorize the integration, the integrations area reloads and shows that Bitbucket Server is connected.
     
 
-## Integrating Additional Instances of Bitbucket Server [Copied!](#integrating-additional-instances-of-bitbucket-server "Copy link to this section")
+## Integrate Additional Instances of Bitbucket Server [Copied!](#integrate-additional-instances-of-bitbucket-server "Copy link to this section")
 
 1.  Navigate to **Settings** and click **Add Integrations**.
     

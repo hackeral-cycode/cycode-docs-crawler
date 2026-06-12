@@ -28,7 +28,7 @@ Grants full access to manage all resources, but does not allow you to share imag
 
 ## Integrating with Cycode [Copied!](#integrating-with-cycode "Copy link to this section")
 
-To integrate Azure Pipelines with Cycode, follow the integration steps described in the [Azure DevOps](/integrations/scm-source-code-management-tools/azure-devops#integrate-azure-devops-with-cycode) integration.
+To integrate Azure Pipelines with Cycode, follow the integration steps described in the [Azure DevOps](/integrations/scm-source-code-management-tools/azure-devops#integrate-with-azure-devops) integration.
 
 Was this article helpful?
 

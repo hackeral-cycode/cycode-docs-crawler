@@ -8,11 +8,133 @@ Source: https://docs.cycode.com/what-s-new-in-the-cycode-platform/what-s-new-in-
 
 [](https://gitlab.com/cycodehq/documentation/cycode_docs/-/blob/main/src/content/what-s-new-in-the-cycode-platform/what-s-new-in-2026.md "Edit this page")
 
-Updated on Apr 29, 2026 • Published on Dec 22, 2025
+Updated on May 28, 2026 • Published on Dec 22, 2025
 
 * * *
 
+## June 2026 [Copied!](#june-2026 "Copy link to this section")
+
+### Analytics-powered widgets and filters in grouped Violations views [Copied!](#analytics-powered-widgets-and-filters-in-grouped-violations-views "Copy link to this section")
+
+The grouped ‘Group By’ views in the Violations page (every option except ‘None’) are now fully powered by Cycode’s analytics engine. In addition to the violations table, the widgets above the table and the page filters now draw from the same analytics-oriented data layer.
+
+Previously, only the table was analytics-powered while the widgets and filters reflected real-time data, which could cause minor mismatches between them. Now that the table, widgets, and filters all use the same source, the numbers stay consistent across the grouped view. Group By ‘None’ continues to show live, instant data whenever you need the most up-to-date, point-in-time view.
+
+Because grouped views operate in near real time, they may differ slightly from Group By ‘None’ until the analytics engine finishes processing the latest changes. This capability is being rolled out gradually and may not yet be available in every environment.
+
+For more information, go to [Understanding ‘Group By’ views](/view-and-manage-violations/understanding-group-by-views/) .
+
+### AI Guardrails now support Codex [Copied!](#ai-guardrails-now-support-codex "Copy link to this section")
+
+Cycode AI Guardrails now extend real-time interception and secret-leak prevention to **OpenAI Codex**, in addition to the existing support for Claude Code and Cursor. Prompts sent to the LLM and MCP tool invocations are scanned **for hardcoded secrets** before they leave the local environment, and any detected secret can be reported or blocked. This gives security teams the same visibility into Codex usage they already have for other AI coding agents.
+
+File read scanning is not available for Codex, because Codex does not expose a file read hook. Secret scanning of prompts and MCP tool calls works the same as it does for Claude Code and Cursor.
+
+Note
+
+Codex support requires Cycode CLI version **3.16.0** or later. Upgrade the CLI before installing AI Guardrails for Codex.
+
+For more information, go to [AI Guardrails](/scanners/adlc-security/ai-guardrails/) .
+
 ## May 2026 [Copied!](#may-2026 "Copy link to this section")
+
+### SCM Logs for end-to-end SCM event visibility [Copied!](#scm-logs-for-end-to-end-scm-event-visibility "Copy link to this section")
+
+Owners and Admins can now use **SCM Logs** to inspect and validate the raw SCM events Cycode receives from connected providers, including GitHub, GitLab, Bitbucket, and Azure DevOps. It provides centralized visibility into commits, pushes, pull request updates, repository changes, and other webhook activity across your connected SCM environments.
+
+Key capabilities include:
+
+*   Event volume visualization over time.
+    
+*   Advanced filtering by SCM provider, organization, repository, branch, actor, and event type.
+    
+*   Free-text search across the full content of every event, including the raw webhook payload.
+    
+*   Full raw webhook payload inspection.
+    
+*   CSV export for offline analysis and sharing.
+    
+
+The histogram and event table stay synchronized, making it easier to investigate integration issues, identify delivery gaps, and validate SCM connectivity.
+
+To access SCM Logs, go to **Settings** > **Activity** > **SCM Logs**.
+
+For more information, go to [SCM Logs](/cycode-settings/scm-logs) .
+
+### Scope Cycode projects to Atlassian instances [Copied!](#scope-cycode-projects-to-atlassian-instances "Copy link to this section")
+
+Cycode now lets you group Atlassian assets into Cycode projects to make ownership of secret-detection violations explicit. When you create a project, you can select Atlassian Cloud sites and Data Center instances as part of the project scope, so the violations detected in those assets are assigned to the project and its members are responsible for remediating them.
+
+The following Atlassian asset sources are available in the project **Scope** step:
+
+*   Jira Cloud
+*   Jira Data Center
+*   Confluence Cloud
+*   Confluence Data Center
+
+For more information, go to [Create and configure a project](/cycode-projects/create-and-configure-a-project/) .
+
+### Cursor developer activity now includes Skills and MCP usage [Copied!](#cursor-developer-activity-now-includes-skills-and-mcp-usage "Copy link to this section")
+
+Cycode extends the Cursor integration with deeper visibility into how each developer uses AI code agents. For tenants on the Cursor **Enterprise** plan, the developer card on the AI Developers Usage page now also shows the skills the developer invoked from Cursor and the MCP servers they called during the selected date range.
+
+*   **Skills executed** — Each skill is listed with its execution count. Click a skill name to jump to the Skills inventory filtered by that skill across all repositories where it is defined.
+    
+*   **MCP servers** — Each server shows the total calls and the specific tools used with per-tool call counts. When Cycode can correlate the server with the MCP inventory by endpoint, the entry also shows the authorization status and a direct link to the MCP inventory card.
+    
+
+The developer card was also reorganized: the previous **Overview** tab is replaced with one tab per code agent, so you can switch directly between Cursor, Anthropic Console, and any other connected agent.
+
+For more information, go to [AI Developers Usage](/developer-experience/security-administrators/monitor-developer-activity/ai-developers-usage) .
+
+### New integration: GitGuardian [Copied!](#new-integration-gitguardian "Copy link to this section")
+
+Cycode now integrates with GitGuardian to surface detected code secrets. Once enabled, this integration provides visibility into various secret types and their specific locations.
+
+*   Detected secrets policies covering JSON Web Tokens, password secrets, private keys, and much more are included out of the box.
+*   Drill into any detected instance to view the specific file path, repository, and exact line where a secret was found.
+
+For more information, go to [GitGuardian](/integrations/security-tools/gitguardian) .
+
+### SAST engine for C# is GA [Copied!](#sast-engine-for-c-is-ga "Copy link to this section")
+
+We’re happy to announce the general availability release of our new SAST engine for C#, featuring source-to-sink data flow analysis that helps you remediate issues faster with greater accuracy, confidence, and context. Cycode’s updated engine provides a significant enhancement in accuracy, greatly minimizing false positives while preserving top-tier scanning speed.
+
+To enable this new engine, go to **Settings** > **SAST** > **Scanning configuration** and enable the **C#** option.
+
+For more information, go to [SAST scanning configuration](/scanners/ast-application-security-testing/sast-static-application-security-testing/configure-the-sast-scanner/sast-scanning-configuration) .
+
+### Repository Composition Analysis [Copied!](#repository-composition-analysis "Copy link to this section")
+
+The repository card’s **Overview tab** now includes a **Composition** section that gives you complete visibility into your codebase structure at a glance.
+
+*   **Language chart** — a dynamic visual breakdown of every language in the repository for instant architectural context.
+*   **Granular metrics** — exact file counts and lines of code per language across your entire codebase.
+
+For more information, go to [Repositories](/inventory/code-entities/repositories) .
+
+### Govern AI models and MCPs across your ADLC [Copied!](#govern-ai-models-and-mcps-across-your-adlc "Copy link to this section")
+
+Shadow AI is everywhere — developers pull models from Hugging Face, wire up MCP servers in their IDE, and ship before security knows the tool exists. Cycode’s new Authorization status for models and MCPs gives you a single source of truth for which AI assets are sanctioned in your environment.
+
+*   Authorization status on every discovered model and MCP — Not Reviewed, Authorized, or Unauthorized.
+    
+*   Automatic violations the moment an asset is marked Unauthorized — no toggle, no delay. Backfilled across all existing detections.
+    
+*   Auto-resolution when you reverse a decision: open violations close automatically with a clear status change message.
+    
+*   Full audit trail under **Settings** > **Audit Logs** for every authorization change and every resulting violation lifecycle event.
+    
+*   Bulk classification to onboard quickly — review a family of related assets in one action.
+    
+
+Available now under ADLC Security. For more information, go to [Policy control for MCP and model usage](/scanners/adlc-security/policy-control-for-mcp-and-model-usage/) .
+
+### Deployed label runtime context now available for Tenable Cloud Security [Copied!](#deployed-label-runtime-context-now-available-for-tenable-cloud-security "Copy link to this section")
+
+Cycode now supports deployed label runtime context for the Tenable Cloud Security integration. After connecting Tenable Cloud Security, you can filter container security violations and images by the **Deployed** label to focus on images actively running in your environment.
+
+For more information, go to [Tenable Cloud Security](/integrations/security-tools/tenable-cloud-security) .
 
 ### GitHub issue tracking now supports GitHub Enterprise [Copied!](#github-issue-tracking-now-supports-github-enterprise "Copy link to this section")
 
@@ -114,6 +236,23 @@ Cycode now supports integrating with StackHawk, a developer-focused DAST platfor
 
 For more information, go to [StackHawk](/integrations/security-tools/stackhawk) .
 
+### Reports page redesign [Copied!](#reports-page-redesign "Copy link to this section")
+
+The **Reports** page has a fresh look and new capabilities to help you get more out of your reports.
+
+What’s changed:
+
+*   See the big picture - new summary metrics at the top of the page show how many reports you have, what types they are, and how they’re scheduled.
+    
+*   Click any report for full details - a new details view opens with settings, recipients, scheduling status, edit actions, and an audit log of key changes.
+    
+*   Generation history - every report now keeps a history of its generation runs, showing who triggered each run and when, with the option to download previous versions.
+    
+*   Refreshed table, report types, and Create Report wizard - updated design system, clearer icons, names, and descriptions, and a more intuitive report type selection step.
+    
+
+For more information, go to [Generate a report](/additional-cycode-features/generate-a-report) .
+
 ## March 2026 [Copied!](#march-2026 "Copy link to this section")
 
 ### New SAST scanner capabilities [Copied!](#new-sast-scanner-capabilities "Copy link to this section")
@@ -134,20 +273,20 @@ For more information, go to [StackHawk](/integrations/security-tools/stackhawk) 
 
 For more information about all new features, go to [SAST scanning configuration](/scanners/ast-application-security-testing/sast-static-application-security-testing/configure-the-sast-scanner/sast-scanning-configuration) .
 
-### New AI Security module [Copied!](#new-ai-security-module "Copy link to this section")
+### New ADLC Security module [Copied!](#new-adlc-security-module "Copy link to this section")
 
-The new AI Security module brings all AI-related violations into a single, focused view so you can find and fix them faster.
+The new ADLC Security module brings all AI-related violations into a single, focused view so you can find and fix them faster.
 
-*   The AI Security view automatically aggregates violations detected by your existing SAST and Secrets scanners that involve AI tools.
+*   The ADLC Security view automatically aggregates violations detected by your existing SAST and Secrets scanners that involve AI tools.
     
-*   A new AI Security Risk filter is available in the All Violations view, making it easy to identify AI-related risks across all your violations.
+*   A new ADLC Security Risk filter is available in the All Violations view, making it easy to identify AI-related risks across all your violations.
     
-*   Create tailored detection rules by adding a custom policy under the AI Security policy type in the Policies view.
+*   Create tailored detection rules by adding a custom policy under the ADLC Security policy type in the Policies view.
     
-*   A new AI Security policy type is now available in the Policies view so you can craft tailored policies using query rules via Cycode’s Context Intelligence Graph.
+*   A new ADLC Security policy type is now available in the Policies view so you can craft tailored policies using query rules via Cycode’s Context Intelligence Graph.
     
 
-For more information, go to [AI security](/scanners/ai-security/) .
+For more information, go to [ADLC security](/scanners/adlc-security/) .
 
 ### Always-synced role management with SCIM-based group provisioning [Copied!](#always-synced-role-management-with-scim-based-group-provisioning "Copy link to this section")
 
@@ -157,9 +296,9 @@ With SSO role mapping, roles are assigned when members sign in to Cycode. With S
 
 For more information, go to [SCIM user and group provisioning](/cycode-settings/user-administration/single-sign-on-sso/scim-user-and-group-provisioning) .
 
-### New AI security dashboards [Copied!](#new-ai-security-dashboards "Copy link to this section")
+### New ADLC security dashboards [Copied!](#new-adlc-security-dashboards "Copy link to this section")
 
-Cycode is happy to announce the release of our AI security dashboards. Use these dashboards to gain full visibility and control over AI assets, repositories, and risks, all in one place.
+Cycode is happy to announce the release of our ADLC security dashboards. Use these dashboards to gain full visibility and control over AI assets, repositories, and risks, all in one place.
 
 **AI visibility dashboard**
 
@@ -187,7 +326,7 @@ Monitor and prioritize the following AI-related security risks:
 *   Risk rankings - Cycode projects and customer repositories ranked by AI-related risk.
     
 
-For more information, go to [AI security](/dashboards/ai-security/) dashboards.
+For more information, go to [ADLC security](/dashboards/adlc-security/) dashboards.
 
 ### Reassign global roles for members in bulk [Copied!](#reassign-global-roles-for-members-in-bulk "Copy link to this section")
 
@@ -199,7 +338,7 @@ AI adoption is accelerating across engineering teams, but do you know which AI t
 
 Cycode’s AI visibility enables security teams to discover and monitor all AI technologies across their codebase with the following capabilities:
 
-*   AI security inventory - a dedicated view (**Inventory** > **AI security**) that surfaces everything, namely AI infrastructures, AI models, AI coding assistants, MCPs, AI secrets, and AI packages.
+*   ADLC security inventory - a dedicated view (**Inventory** > **ADLC security**) that surfaces everything, namely AI infrastructures, AI models, AI coding assistants, MCPs, AI secrets, and AI packages.
     
 *   AI rule file detection - Cycode discovers AI rule files (both rule files and skills) via the Context Intelligence Graph, so you can query, track, and monitor them alongside other code entities.
     
@@ -208,7 +347,7 @@ Cycode’s AI visibility enables security teams to discover and monitor all AI t
 *   Repository-level filtering - A new **AI tools** filter in the **Inventory** > **Repositories** view lets you instantly identify those repositories that contain AI technologies, making it easy to scope your AI governance efforts.
     
 
-For more information, go to [AI security](/context-intelligence-graph/inventory/application-insights/ai-security) .
+For more information, go to [ADLC security](/context-intelligence-graph/inventory/application-insights/adlc-security) .
 
 ### Real-time secret protection for AI coding assistants with Cycode AI Guardrails [Copied!](#real-time-secret-protection-for-ai-coding-assistants-with-cycode-ai-guardrails "Copy link to this section")
 
@@ -236,12 +375,12 @@ You can leave the default **Block** mode, or use **Report** mode for gradual ado
 
 The following AI code assistants are supported:
 
-*   Claude
+*   Claude Code
     
 *   Cursor
     
 
-For more information, read the [blog post](https://cycode.com/blog/ai-guardrails-real-time-ide-security/) or go to [Enforce AI Guardrails](/developer-experience/security-administrators/enforce-ai-guardrails) in the product docs.
+For more information, read the [blog post](https://cycode.com/blog/ai-guardrails-real-time-ide-security/) or go to [AI Guardrails](/scanners/adlc-security/ai-guardrails/) in the product docs.
 
 ### Enhanced content for single Slack alerts [Copied!](#enhanced-content-for-single-slack-alerts "Copy link to this section")
 

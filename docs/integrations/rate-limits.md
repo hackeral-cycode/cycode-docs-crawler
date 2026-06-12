@@ -76,7 +76,19 @@ The dialog also includes the Rate Limits Statistics:
 *   Calculation Period: The timeframe (in hours) in which the ‘Hits’ and ‘Rate Limit Peak’ stats were calculated.
     
 
+Note
+
+Rate-limit values use a per-minute interval. The **Hits** and **Peak** counters reset every minute, and a new limit window starts counting from zero at the beginning of each minute.
+
 You can also modify (edit) the domain’s rate limits (or delete them) using the three-button option menu in the top right corner (see next section).
+
+### Cycode API rate limits [Copied!](#cycode-api-rate-limits "Copy link to this section")
+
+In addition to the per-domain limits configured above for outbound integrations, the Cycode APIs themselves apply the following limits:
+
+*   **Reports API** — 1 request every 5 seconds, with a maximum of 5 requests per minute per tenant. Exceeding either threshold returns HTTP `429`.
+*   **File-service API** and **Violations API** — approximately 600 requests per minute per token.
+*   Most other Cycode APIs do not enforce a global per-tenant rate limit.
 
 ### Modifying an existing rate limit [Copied!](#modifying-an-existing-rate-limit "Copy link to this section")
 

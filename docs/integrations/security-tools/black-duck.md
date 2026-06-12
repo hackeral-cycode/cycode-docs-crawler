@@ -94,6 +94,10 @@ Read
 10.  For security reasons, save the tokens you generate in a secure location.
      
 
+## Sync cadence and lifecycle [Copied!](#sync-cadence-and-lifecycle "Copy link to this section")
+
+When a project is deleted from the Black Duck dashboard, the corresponding imported violations in Cycode are **not** automatically closed. To remove them from active triage, close them manually in Cycode.
+
 ## FAQs [Copied!](#faqs "Copy link to this section")
 
 #### How does Cycode correlate data from Black Duck? [Copied!](#how-does-cycode-correlate-data-from-black-duck "Copy link to this section")

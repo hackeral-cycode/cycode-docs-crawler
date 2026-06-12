@@ -12,21 +12,33 @@ Updated on Mar 25, 2026 • Published on Oct 29, 2024
 
 * * *
 
-## Introduction [Copied!](#introduction "Copy link to this section")
+## Overview [Copied!](#overview "Copy link to this section")
 
 Perforce Helix Core is an enterprise-class version control software application that securely manages all digital content in a single repository. Helix Core tracks and manages changes to your source code, digital assets, and large binary files.
 
 After successfully integrating, Cycode starts pulling the data from your environment and running its policies.
 
-### Prerequisites [Copied!](#prerequisites "Copy link to this section")
+## Prerequisites [Copied!](#prerequisites "Copy link to this section")
 
 You need to be a user with super access permissions in Helix Core to perform the configuration. For more information, go to the [Helix Core docs](https://www.perforce.com/manuals/p4admin/Content/P4Admin/admin.permissions.html) .
 
-### Permissions [Copied!](#permissions "Copy link to this section")
+## Authentication methods [Copied!](#authentication-methods "Copy link to this section")
+
+Cycode supports the following authentication method for Helix Core.
+
+Method
+
+Description
+
+Username + password
+
+Authenticate with a Helix Core user’s username and password. The credentials are exchanged for an ephemeral P4 login ticket and aren’t stored on disk. For SSL-enabled instances, an SSL fingerprint (`p4 trust -i`) is also required - see [Integrate with Helix Core](#integrate-with-helix-core) below.
+
+## Permissions [Copied!](#permissions "Copy link to this section")
 
 The integration with Cycode requires **read-only** permissions in Helix Core.
 
-## Integrate Cycode with Helix Core [Copied!](#integrate-cycode-with-helix-core "Copy link to this section")
+## Integrate with Helix Core [Copied!](#integrate-with-helix-core "Copy link to this section")
 
 1.  In Cycode **Settings > Integrations**, click **Add Integration**.
     

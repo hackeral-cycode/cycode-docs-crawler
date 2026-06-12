@@ -29,19 +29,47 @@ Integrating GitHub Cloud enables Cycode to scan your code and:
 
 After the integration is complete, Cycode starts scanning your environment and applying its policies.
 
-### Integration options [Copied!](#integration-options "Copy link to this section")
+## Prerequisites [Copied!](#prerequisites "Copy link to this section")
 
-Cycode supports integrating with GitHub with full permissions or with read-only permissions.
+Cycode only integrates with GitHub **organizations**. Verify that you have the right permissions to approve these integrations before proceeding.
 
-#### Supported features [Copied!](#supported-features "Copy link to this section")
+## Authentication methods [Copied!](#authentication-methods "Copy link to this section")
 
-The following table lists the Cycode features that require full permissions, and the features that are supported with read-only permissions.
+Cycode supports the following authentication method for GitHub.
 
-Feature
+Method
+
+Description
 
 GitHub App
 
-GitHub App Read-Only
+Install the Cycode GitHub App in your GitHub organization. The app is available in a Default variant and a Read-only variant. For the comparison, see [GitHub App variants](#github-app-variants) below.
+
+## Permissions [Copied!](#permissions "Copy link to this section")
+
+### GitHub App variants [Copied!](#github-app-variants "Copy link to this section")
+
+The Cycode GitHub App is available in two variants. Choose the variant that matches the access you can grant Cycode; the Read-only variant requires fewer permissions but supports a reduced set of capabilities.
+
+Variant
+
+Description
+
+Default
+
+Full-permission app. Enables PR scanning, status checks, block-merge, and remediation flows. Recommended for most integrations.
+
+Read-only
+
+Read-only app. Supports repository discovery, baseline and on-demand scans, and access review. PR-flow features (status checks, comments, block-merge, remediation) are not supported.
+
+The following table lists the Cycode features that require the Default app, and the features that are supported with the Read-only variant.
+
+Feature
+
+Default
+
+Read-only
 
 Detect violations and vulnerabilities in code
 
@@ -123,13 +151,15 @@ Access review policies
 
 **X**
 
-### Permissions [Copied!](#permissions "Copy link to this section")
+### Required permissions [Copied!](#required-permissions "Copy link to this section")
 
-The following permissions are required for integrating with Cycode:
+The following permissions are required for integrating with Cycode. The **Default** column shows the access required by the Default app; the **Read-only** column shows the reduced access requested by the Read-only variant.
 
 Permissions
 
-Access
+Default
+
+Read-only
 
 Why is this access required?
 
@@ -139,11 +169,15 @@ Actions
 
 Read
 
+Read
+
 Sync organization pipeline settings and workflows
 
 Administration
 
 Read/Write
+
+Read
 
 Read - Fetch branch protections Write - Add branch protection and block merging of PRs
 
@@ -151,11 +185,15 @@ Checks
 
 Read/Write
 
+Read
+
 Read - Fetch commit status checks Write - Required for the status “In-progress” in the GitHub pipeline
 
 Commit statuses
 
 Read/Write
+
+Read
 
 Read - Sync status checks and the PR status in Cycode Write - Add fail/success status checks to PRs
 
@@ -163,9 +201,13 @@ Contents
 
 Read/Write
 
+Read
+
 Read - Fetch repository content, commits, branches, etc. Write - Remediate code-related issues
 
 Dependabot Alerts
+
+Read
 
 Read
 
@@ -175,9 +217,13 @@ Issues
 
 Read
 
+Read
+
 Fetch contributing members’ issues to assess necessary permissions
 
 Merge Queue
+
+Read
 
 Read
 
@@ -187,9 +233,13 @@ Metadata
 
 Read
 
+Read
+
 Mandatory
 
 Secrets
+
+Read
 
 Read
 
@@ -199,9 +249,13 @@ Pull requests
 
 Read/Write
 
+Read
+
 Read - Read comments and PRs Write - Add PR comments and create PRs for remediation
 
 Webhooks
+
+Read
 
 Read
 
@@ -211,9 +265,13 @@ Code scanning alerts
 
 Read
 
+Read
+
 Fetch CodeQL scanning alerts
 
 Custom properties
+
+Read
 
 Read
 
@@ -225,15 +283,21 @@ Administration
 
 Read
 
+Read
+
 Fetch workflow permissions and third-party apps
 
 Members
 
 Read/Write
 
+Read
+
 Read - Fetch members, outside collaborators, and teams Write - Member remediations
 
 Plan
+
+Read
 
 Read
 
@@ -243,9 +307,13 @@ Webhooks
 
 Read
 
+Read
+
 Sync organization webhooks
 
 Custom properties
+
+Read
 
 Read
 
@@ -255,9 +323,13 @@ Personal Access Tokens
 
 Read
 
+Read
+
 Access fine-grained tokens
 
 Secrets
+
+Read
 
 Read
 
@@ -374,10 +446,6 @@ Track team events for access review, inventory, and discovery
 Team Add
 
 Currently not used, keeping in case will be needed in the future
-
-### Prerequisites [Copied!](#prerequisites "Copy link to this section")
-
-Cycode only integrates with GitHub **organizations**. Verify that you have the right permissions to approve these integrations before proceeding.
 
 ## Integrate with GitHub [Copied!](#integrate-with-github "Copy link to this section")
 

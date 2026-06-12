@@ -22,11 +22,20 @@ This is a one-way integration from the third-party API to Cycode.
 
 Note
 
-The connector was tested on version 10.4. Any versions prior to this version should be verified first.
+The connector supports version 10.4+.
 
 ## Domain [Copied!](#domain "Copy link to this section")
 
 SAST
+
+## Setup [Copied!](#setup "Copy link to this section")
+
+1.  Log in to your SonarQube instance with the designated user account.
+2.  For each **private** project being synced, grant the designated user account the **Browse** and **See Source Code** permissions at the project level. Refer to [Setting Project Permissions](https://docs.sonarsource.com/sonarqube-server/project-administration/setting-project-permissions) in the SonarQube documentation for instructions.
+3.  Go to **My Account > Security** and click **Generate API token**.  
+    Make sure you select a token of type **User Token**.  
+    ![](/assets/image%28144%29.png)
+4.  Copy the new API token and store it somewhere safe.
 
 ## Permissions [Copied!](#permissions "Copy link to this section")
 
@@ -41,31 +50,6 @@ Access a project, browse its measures and issues, confirm issues, change the ass
 See Source Code
 
 View the project’s source code (for private projects, users also need the “Browse” permission)
-
-## Setup [Copied!](#setup "Copy link to this section")
-
-1.  Log in to your SonarQube instance with the designated user account.
-2.  Go to **My Account > Security** and click **Generate API token**.  
-    Make sure you select a token of type **User Token**.  
-    ![](/assets/image%28144%29.png)
-3.  Copy the new API token and store it somewhere safe.
-
-## FAQs [Copied!](#faqs "Copy link to this section")
-
-### Which types of violations are pulled from SonarQube? [Copied!](#which-types-of-violations-are-pulled-from-sonarqube "Copy link to this section")
-
-When configuring SonarQube you can select which types of violation you want to pull:
-
-*   Security
-*   Reliability
-*   Maintainability
-
-![](/assets/image%28474%29.png)
-
-![](/assets/image%28471%29.png)
-
-You can always add more violation types after the connector is configured. You can do that by navigating to the Overview page of the connector and selecting other types of violations in the Violation Types selector.  
-![](/assets/image%28472%29.png)
 
 Was this article helpful?
 

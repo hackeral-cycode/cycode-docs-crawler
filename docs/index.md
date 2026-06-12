@@ -142,24 +142,24 @@ Auto-updated with the latest changes.
 
 *   [
     
-    Integrations 5 days ago
+    View and manage violations 1 weeks ago
     
-    GitGuardian](/integrations/security-tools/gitguardian/)
+    Understanding 'Group By' views](/view-and-manage-violations/understanding-group-by-views/)
 *   [
     
-    Cycode settings 1 weeks ago
+    Scanners 1 weeks ago
     
-    AI features](/cycode-settings/admin-settings/ai-features/)
+    SCA policies](/scanners/ast-application-security-testing/sca-software-composition-analysis/sca-policies/)
 *   [
     
-    What's new in the Cycode platform? 1 weeks ago
+    What's new in the Cycode platform? 2 weeks ago
     
     What's new in 2026](/what-s-new-in-the-cycode-platform/what-s-new-in-2026/)
 *   [
     
-    Cycode AI 1 weeks ago
+    Workflow automation 2 weeks ago
     
-    AI usage dashboard](/cycode-ai/usage-dashboard/)
+    Create a workflow](/workflow-automation/create-a-workflow/)
 
 ## Other resources
 

@@ -8,7 +8,7 @@ Source: https://docs.cycode.com/before-you-begin/feature-lifecycle
 
 [](https://gitlab.com/cycodehq/documentation/cycode_docs/-/blob/main/src/content/before-you-begin/feature-lifecycle.md "Edit this page")
 
-Updated on Apr 26, 2026 • Published on Apr 26, 2026
+Updated on May 25, 2026 • Published on Apr 26, 2026
 
 * * *
 
@@ -107,6 +107,14 @@ SCA Scan source settings
 Early Access
 
 [View Docs](/scanners/manage-the-scanners/manage-repository-scanning)
+
+Q4 2026
+
+SBOM Report — Granular Scope Selection
+
+Early Access
+
+[View Docs](/inventory/sboms-software-bills-of-material/export-an-sbom#granular-scope-selection)
 
 Q4 2026
 
