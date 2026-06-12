@@ -8,7 +8,7 @@ Source: https://docs.cycode.com/scanners/ast-application-security-testing/sast-s
 
 [](https://gitlab.com/cycodehq/documentation/cycode_docs/-/blob/main/src/content/scanners/ast-application-security-testing/sast-static-application-security-testing/sast-policies/file-extension-support-in-sast.md "Edit this page")
 
-Updated on Mar 27, 2026 • Published on Jun 19, 2024
+Updated on May 21, 2026 • Published on Jun 19, 2024
 
 * * *
 
@@ -48,7 +48,7 @@ Rust
 
 `.rs` `.rlib`
 
-CSharp
+C#
 
 `.cs` `.cake` `.cs.pp` `.csx` `.linq`
 
@@ -64,7 +64,7 @@ VB.NET
 
 `.vb`
 
-## Semgerp [Copied!](#semgerp "Copy link to this section")
+## Semgrep [Copied!](#semgrep "Copy link to this section")
 
 Language
 

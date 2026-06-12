@@ -8,7 +8,7 @@ Source: https://docs.cycode.com/scanners/ast-application-security-testing/sast-s
 
 [](https://gitlab.com/cycodehq/documentation/cycode_docs/-/blob/main/src/content/scanners/ast-application-security-testing/sast-static-application-security-testing/configure-the-sast-scanner/sast-scanning-configuration.md "Edit this page")
 
-Updated on Mar 31, 2026 • Published on Mar 24, 2026
+Updated on May 21, 2026 • Published on Mar 24, 2026
 
 * * *
 
@@ -87,7 +87,7 @@ Yes. Using the OWASP Java benchmark, Bearer engine v2 improved overall precision
 
 **Which languages are supported by this new engine?**
 
-Bearer engine v2 currently supports Java (GA), Python (GA), and C# (Beta). Additional languages, such as GoLang, are planned for upcoming quarters.
+Bearer engine v2 currently supports Java (GA), Python (GA), and C# (GA). Additional languages, such as GoLang, are planned for upcoming quarters.
 
 ## Configure branch scanning for SAST [Copied!](#configure-branch-scanning-for-sast "Copy link to this section")
 

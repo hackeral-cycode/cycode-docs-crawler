@@ -14,7 +14,7 @@ Updated on Apr 29, 2026 • Published on Nov 18, 2024
 
 [
 
-![.NET logo](/assets/icons/languages/dotnet.svg)
+![.NET icon](/assets/icons/languages/dotnet.svg)
 
 .NET](net)
 
@@ -22,7 +22,7 @@ Updated on Apr 29, 2026 • Published on Nov 18, 2024
 
 [
 
-![C/C++ logo](/assets/icons/languages/c-cpp.svg)
+![C/C++ icon](/assets/icons/languages/c-cpp.svg)
 
 C/C++](c-c)
 
@@ -30,7 +30,7 @@ C/C++](c-c)
 
 [
 
-![Dart logo](/assets/icons/languages/dart.svg)
+![Dart icon](/assets/icons/languages/dart.svg)
 
 Dart](dart)
 
@@ -38,7 +38,7 @@ Dart](dart)
 
 [
 
-![Elixir logo](/assets/icons/languages/elixir.svg)
+![Elixir icon](/assets/icons/languages/elixir.svg)
 
 Elixir](elixir)
 
@@ -46,7 +46,7 @@ Elixir](elixir)
 
 [
 
-![Go logo](/assets/icons/languages/go.svg)
+![Go icon](/assets/icons/languages/go.svg)
 
 Go](go)
 
@@ -54,23 +54,23 @@ Go](go)
 
 [
 
-![Java logo](/assets/icons/languages/java.svg)
+![Java icon](/assets/icons/languages/java.svg)
 
 Java](java)
 
-[Maven](java#maven)[Gradle](java#gradle)[Bazel](java#bazel)
+[Maven](java#maven) [Gradle](java#gradle) [Bazel](java#bazel)
 
 [
 
-![JavaScript logo](/assets/icons/languages/javascript.svg)
+![JavaScript icon](/assets/icons/languages/javascript.svg)
 
 JavaScript](javascript)
 
-[NPM](javascript#npm)[Yarn](javascript#yarn)[PNPM](javascript#pnpm)[Deno](javascript#deno)
+[NPM](javascript#npm) [Yarn](javascript#yarn) [PNPM](javascript#pnpm) [Deno](javascript#deno)
 
 [
 
-![PHP logo](/assets/icons/languages/php.svg)
+![PHP icon](/assets/icons/languages/php.svg)
 
 PHP](php)
 
@@ -78,15 +78,15 @@ PHP](php)
 
 [
 
-![Python logo](/assets/icons/languages/python.svg)
+![Python icon](/assets/icons/languages/python.svg)
 
 Python](python)
 
-[Pip](python#pip)[Pipenv](python#pipenv)[Poetry](python#poetry)[UV](python#uv)
+[Pip](python#pip) [Pipenv](python#pipenv) [Poetry](python#poetry) [UV](python#uv)
 
 [
 
-![Ruby logo](/assets/icons/languages/ruby.svg)
+![Ruby icon](/assets/icons/languages/ruby.svg)
 
 Ruby](ruby)
 
@@ -94,7 +94,7 @@ Ruby](ruby)
 
 [
 
-![Rust logo](/assets/icons/languages/rust.svg)
+![Rust icon](/assets/icons/languages/rust.svg)
 
 Rust](rust)
 
@@ -102,7 +102,7 @@ Rust](rust)
 
 [
 
-![Scala logo](/assets/icons/languages/scala.svg)
+![Scala icon](/assets/icons/languages/scala.svg)
 
 Scala](scala)
 
@@ -110,11 +110,11 @@ Scala](scala)
 
 [
 
-![Swift logo](/assets/icons/languages/swift.svg)
+![Swift icon](/assets/icons/languages/swift.svg)
 
 Swift](swift)
 
-[SwiftPM](swift#swiftpm)[Carthage](swift#carthage)[CocoaPods](swift#cocoapods)
+[SwiftPM](swift#swiftpm) [Carthage](swift#carthage) [CocoaPods](swift#cocoapods)
 
 Was this article helpful?
 

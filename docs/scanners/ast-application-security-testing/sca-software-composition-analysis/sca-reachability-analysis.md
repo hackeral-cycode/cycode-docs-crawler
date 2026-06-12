@@ -14,7 +14,7 @@ Updated on Mar 18, 2026 • Published on Sep 1, 2025
 
 ## Overview [Copied!](#overview "Copy link to this section")
 
-Cycode analyzes all the vulnerabilities that are detected in the open-source packages your project uses, and distinguishes between vulnerabilities in code that are simply present and those in code that are actively called. This allows security and development teams to:
+Cycode analyzes vulnerabilities detected in your project’s direct dependencies to distinguish between code that is simply present and code that is actively called. Vulnerabilities in indirect (transitive) dependencies are not currently scanned for reachability. This allows security and development teams to:
 
 *   Prioritize fixes for vulnerabilities that pose a genuine threat.
 *   Reduce alert fatigue by ignoring vulnerabilities in unreachable code.
