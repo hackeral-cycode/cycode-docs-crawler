@@ -8,17 +8,17 @@ Source: https://docs.cycode.com/inventory/sboms-software-bills-of-material/expor
 
 [](https://gitlab.com/cycodehq/documentation/cycode_docs/-/blob/main/src/content/inventory/sboms-software-bills-of-material/export-an-sbom.md "Edit this page")
 
-Updated on Aug 13, 2025 • Published on Aug 5, 2025
+Updated on May 25, 2026 • Published on Aug 5, 2025
 
 * * *
 
 ## Overview [Copied!](#overview "Copy link to this section")
 
-You can export SBOMs for your Cycode projects in standard industry formats from the Reports view.
+You can export SBOMs for your repositories in standard industry formats from the Reports view.
 
-## Supported SBOM Formats [Copied!](#supported-sbom-formats "Copy link to this section")
+## Supported SBOM formats [Copied!](#supported-sbom-formats "Copy link to this section")
 
-Cycode supports the two leading industry standards for SBOMs, allowing for maximum compatibility with other tools and systems.
+Cycode supports the two leading industry standards for SBOMs, ensuring broad compatibility with third-party tools and systems.
 
 Format
 
@@ -30,54 +30,155 @@ CycloneDX
 
 An OWASP SBOM standard designed for security contexts and the identification of known and unknown risks.
 
-Best for application security, vulnerability management, and integration with modern security tools.
+Application security, vulnerability management, and integration with modern security tooling.
 
 SPDX
 
-Robust, open standard (ISO/IEC 5962:2021) that focuses on comprehensively capturing software component and license information.
+An open standard (ISO/IEC 5962:2021) focused on comprehensively capturing software component and license information.
 
-Best for detailed license compliance, legal reviews, and situations requiring a high degree of formal specification.
+License compliance, legal reviews, and situations requiring formal specification.
 
 ## Generate an SBOM report [Copied!](#generate-an-sbom-report "Copy link to this section")
 
-1.  In the Imported SBOMs view, click **Export SBOM**(or in the Reports view click **Create Report**) to launch the report wizard.
-    
-2.  In the **Details** page, type a name and optional description for the report.
-    
-3.  (Reports view only) In the **Report type** page, select **SBOM**.
-    
-4.  In the **SBOM report content** page, configure the scope of the SBOM report:
-    
-    Use
-    
-    To…
-    
-    **Repository**
-    
-    Export dependencies that are found in SCM repositories.
-    
-    **Imported SBOM**
-    
-    Export a report about an imported SBOM.
-    
-5.  Select whether to include vulnerabilities associated with the exported code dependencies.
-    
-6.  Select whether to include dev dependencies.
-    
-7.  Click **Next**.
-    
-8.  In the Settings page, select the SBOM format, either **SPDX-2.2** or **CycloneDX-1.6**.
-    
-9.  Select the output file format, either **JSON** or **XML**.
-    
-    Note
-    
-    You can configure additional options as described in [Generate a report](/additional-cycode-features/generate-a-report) .
-    
-10.  Click **Create report**.
-     
+### Step 1: Details [Copied!](#step-1-details "Copy link to this section")
 
-After the report is generated, it is available in the report list.
+In the Imported SBOMs view, click **Export SBOM** (or, in the Reports view, click **Create Report**) to launch the report wizard.
+
+Enter a name and an optional description for the report, then click **Next**.
+
+### Step 2: Report type [Copied!](#step-2-report-type "Copy link to this section")
+
+_(Reports view only)_ Select **SBOM** as the report type, then click **Next**.
+
+### Step 3: Report content [Copied!](#step-3-report-content "Copy link to this section")
+
+Select the source for the SBOM report:
+
+Option
+
+Description
+
+**Repository**
+
+Export dependencies found in SCM repositories.
+
+**Imported SBOM**
+
+Export a report based on an imported SBOM.
+
+If you selected **Repository** as the source, use one of the following methods to define the scope:
+
+#### Basic scope selection [Copied!](#basic-scope-selection "Copy link to this section")
+
+In the left panel, select how to group available assets:
+
+Group by
+
+Description
+
+**SCM Organizations**
+
+Groups repositories by their source control organization.
+
+**Repository Labels**
+
+Groups repositories by Cycode label.
+
+The picker displays three columns:
+
+1.  **Organizations** (or **Labels**) — select one or more groups.
+2.  **Repositories** — select the repositories within the chosen group.
+3.  **Branches** — select individual branches, or click **Select All Branches** to include all branches for the selected repository.
+
+#### Granular scope selection [Copied!](#granular-scope-selection "Copy link to this section")
+
+Early Access
+
+This feature is in early access phase. If you want to enable it in your environment, please contact your Cycode support representative.
+
+In the **Repository** tab, use the **Group by** toggle to organize the asset tree:
+
+Group by
+
+Description
+
+**SCM Organizations** (default)
+
+Groups repositories by their source control organization.
+
+**Repository Labels**
+
+Groups repositories by Cycode label.
+
+**Cycode Projects**
+
+Groups repositories by logical Cycode project.
+
+The tree is organized in the following hierarchy: Grouping level > Repository > Branch > Code Project.
+
+Select assets at any level of the hierarchy. The following table describes what is exported for each selection:
+
+Asset selected
+
+What is exported
+
+**SCM Organization**
+
+All repositories in the organization, using the default branch of each, including all code projects.
+
+**Repository**
+
+All code projects on the default branch.
+
+**Branch**
+
+All code projects on that specific branch.
+
+**Code Project**
+
+That exact manifest file on its branch.
+
+**Repository Label**
+
+All repositories attached to the label, using the default branch of each, including all code projects. SCM organizations attached to the label are not included.
+
+**Cycode Project**
+
+All repositories directly attached to the project, using the default branch of each, including all code projects. SCM organizations and labels attached to the project are not included.
+
+Note
+
+When you select a Cycode Project, only repositories that are **directly attached** to it are included. Repositories within SCM organizations or labels that are linked to the project are not exported.
+
+Use the search bar to find repositories and code projects across all groupings. Each result displays the full ancestry path (for example, `organization / repository-name / branch / manifest-file`). For each result you can:
+
+*   **Locate** — Scopes the tree to that specific asset.
+*   **Add** — Adds the item to the selection at that exact level of granularity.
+
+All selected assets appear in the **Selected assets** panel on the right. Click **×** to remove an item.
+
+#### Report options [Copied!](#report-options "Copy link to this section")
+
+The following options apply to both scope selection methods:
+
+*   Select whether to include vulnerabilities associated with the exported code dependencies.
+*   Select whether to include dev dependencies.
+
+Click **Next**.
+
+### Step 4: Settings [Copied!](#step-4-settings "Copy link to this section")
+
+Select the SBOM format: **SPDX-2.2** or **CycloneDX-1.6**.
+
+Select the output file format: **JSON** or **XML**.
+
+Note
+
+You can configure additional options as described in [Generate a report](/additional-cycode-features/generate-a-report) .
+
+Click **Create report**.
+
+After the report is generated, it appears in the report list.
 
 Was this article helpful?
 

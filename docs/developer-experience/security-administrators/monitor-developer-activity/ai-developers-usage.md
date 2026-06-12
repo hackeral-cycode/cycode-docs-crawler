@@ -56,18 +56,32 @@ Clicking a developer row opens a detailed card with a deeper breakdown of their 
 
 ### Card Header [Copied!](#card-header "Copy link to this section")
 
-Displays the developer’s name, email, time period label (e.g., “Last 3 Months”), and three summary stats: **Lines Generated**, **Acceptance Rate**, and **Active Tools**.
+Displays the developer’s name, email, and time period label (e.g., “Last 3 Months”).
 
 ### Code Agents Breakdown [Copied!](#code-agents-breakdown "Copy link to this section")
 
-The card shows a separate section for each code agent the developer uses, with agent-specific metrics:
+The card shows a separate section for each code agent the developer uses, with agent-specific metrics.
 
-*   **For Anthropic Console** — Lines generated (added/deleted), Used models, and Accepted/Rejected counts. See the [Anthropic Console Integration](/integrations/ai-coding-agents/anthropic-console) documentation for field details.
-*   **For Cursor** — Lines generated (added/deleted), Used models, Accepted lines (added/deleted), Agent requests, Chat requests, and Tab acceptance rate. See the [Cursor Integration](/integrations/ai-coding-agents/cursor) documentation for field details.
+#### Anthropic Console [Copied!](#anthropic-console "Copy link to this section")
+
+Lines generated (added/deleted), Used models, and Accepted/Rejected counts.
+
+See the [Anthropic Console Integration](/integrations/ai-coding-agents/anthropic-console) documentation for field details.
+
+#### Cursor [Copied!](#cursor "Copy link to this section")
+
+Lines generated (added/deleted), Used models, Accepted lines (added/deleted), Agent requests, Chat requests, and Tab acceptance rate.
+
+For tenants on the Cursor **Enterprise** plan, the Cursor section is also enriched with:
+
+*   **Skills executed** — Skills the developer invoked from Cursor, with execution counts and links to the Skills inventory.
+*   **MCP servers** — Each server’s call count and the specific tools used with per-tool call counts. When Cycode can correlate the server with the MCP inventory by endpoint, the entry also shows the authorization status and a link to its MCP [inventory card](/inventory/application-insights/adlc-security#mcps) .
+
+See the [Cursor Integration](/integrations/ai-coding-agents/cursor) documentation for field details.
 
 ### Tabs [Copied!](#tabs "Copy link to this section")
 
-*   **Overview** — The default view with the metrics described above.
+*   **Code agents** — One tab per code agent the developer used during the selected date range (for example, **Cursor**, **Anthropic Console**). Selecting an agent shows the metrics described above, scoped to that agent.
 *   **Interaction Logs** — A detailed log of individual AI interactions for this developer (when available).
 
 Was this article helpful?

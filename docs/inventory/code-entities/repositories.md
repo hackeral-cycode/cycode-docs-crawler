@@ -100,7 +100,47 @@ Shows whether the repository is archived (Yes/No).
 
 ### Inventory card [Copied!](#inventory-card "Copy link to this section")
 
-The repository page has two additional tabs in the inventory card.
+The repository card contains the following tabs.
+
+#### Overview tab [Copied!](#overview-tab "Copy link to this section")
+
+The Overview tab contains the following sections.
+
+**Section**
+
+**Description**
+
+Insights
+
+At-a-glance cards showing contextual information about the repository, such as whether it has APIs, build workflows, webhooks, or Dockerfiles.
+
+Open Violations
+
+Total number of open violations detected in this repository, broken down by severity.
+
+Exposure Path
+
+Visual graph showing how the repository is connected to other entities. For more information, go to [Exposure paths](/view-and-manage-violations/exposure-paths) .
+
+Repository Owners
+
+Owners identified for this repository. For more information, go to [View the repository owners in the platform](/additional-cycode-features/repository-code-ownership/view-the-repository-owners-in-the-platform) .
+
+Active Contributors
+
+Contributors who have recently committed to this repository.
+
+Composition
+
+Visual breakdown of the programming languages in the repository, including file count, lines of code, and percentage for each language.
+
+Labels
+
+Labels assigned to the repository. You can also add labels manually.
+
+Properties
+
+Metadata about the repository, including SDLC stage, source, visibility, primary language, fork and archive status, merge settings, URL, and detection timestamps.
 
 #### Inventory tab [Copied!](#inventory-tab "Copy link to this section")
 

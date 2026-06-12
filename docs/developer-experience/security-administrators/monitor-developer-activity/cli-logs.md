@@ -82,6 +82,14 @@ Status
 
 Final status of the scan.
 
+## Plugin and developer activity coverage [Copied!](#plugin-and-developer-activity-coverage "Copy link to this section")
+
+The CLI Logs dashboard tracks CLI scan activity. The following items describe what is and is not exposed through CLI Logs and related developer-engagement widgets:
+
+*   The **Plugin Users by Version** widget on the Developer Engagement dashboard shows the number of users running each plugin version, including outdated versions. The widget does not expose specific user identities, and the user counts are not clickable.
+*   There is no direct way to list which specific users have installed the CLI or IDE plugin. Only plugin usage (scan activity) is tracked. To identify users who are running a particular plugin version, cross-reference the **Top 4 users** widget and the CLI logs table with IDE and CLI scan activity.
+*   IP address is not currently captured or displayed for developer CLI scans.
+
 Was this article helpful?
 
 Yes No

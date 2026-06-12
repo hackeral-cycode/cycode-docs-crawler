@@ -8,7 +8,7 @@ Source: https://docs.cycode.com/workflow-automation/create-a-workflow
 
 [](https://gitlab.com/cycodehq/documentation/cycode_docs/-/blob/main/src/content/workflow-automation/create-a-workflow.md "Edit this page")
 
-Updated on Nov 24, 2025 • Published on Nov 5, 2024
+Updated on May 27, 2026 • Published on Nov 5, 2024
 
 * * *
 
@@ -30,6 +30,50 @@ Cycode provides the following options for creating a workflow:
 Note
 
 Classification rules have been deprecated, and all automation activities are now handled as workflows.
+
+## Trigger types [Copied!](#trigger-types "Copy link to this section")
+
+When you create a workflow, the trigger defines the event that starts it. The following trigger types are available:
+
+Trigger
+
+Starts the workflow when…
+
+Common uses
+
+**New violation**
+
+A new violation is detected for the selected policies or violation categories.
+
+Alert on new findings, open tickets, or apply a Cycode action (set status, set severity, add label, exclude).
+
+**Violation status change**
+
+A violation’s status changes for the first time (for example, resolved or reopened).
+
+Notify stakeholders when a violation is resolved or reopened.
+
+**SLA status change**
+
+A violation’s SLA status changes for the first time (for example, near-miss or breached).
+
+Escalate when a violation approaches or breaches its SLA.
+
+**Notification**
+
+A platform notification is raised, such as an integration error or a disconnected SCM connection.
+
+Forward integration-health and other system notifications to email, Slack, or ticketing tools.
+
+**Graph query**
+
+A new record is added to a saved Context Intelligence Graph query list.
+
+Trigger alerts or actions from custom graph queries. See [Create a custom policy from a query](/context-intelligence-graph/create-a-custom-policy-from-a-query/) .
+
+Note
+
+Cycode actions (such as set status, set severity, add label, or exclude) are available only with the **New violation** trigger. The other triggers support third-party actions (email, Slack, ticketing, and so on).
 
 ## Create a workflow based on a trigger [Copied!](#create-a-workflow-based-on-a-trigger "Copy link to this section")
 

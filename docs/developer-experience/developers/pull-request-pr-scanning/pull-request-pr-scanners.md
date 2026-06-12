@@ -134,6 +134,10 @@ Ultimate only
 
 **X**
 
+🚧 Why GitLab Block merge requires GitLab Ultimate
+
+Cycode’s **Block merge** for GitLab (Cloud and Self-Managed) is built on GitLab’s **External Status Checks** API, which GitLab offers only on the **GitLab Ultimate** tier (Self-Managed requires version **15.5** or later). This is a GitLab licensing requirement, not a Cycode restriction, so the feature is unavailable on GitLab Free or Premium.
+
 Was this article helpful?
 
 Yes No

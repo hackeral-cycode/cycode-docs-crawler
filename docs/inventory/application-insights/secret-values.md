@@ -118,7 +118,7 @@ No
 
 Discovery sources
 
-(AI security only) Tool that detected the violation.
+(ADLC security only) Tool that detected the violation.
 
 Yes
 
@@ -178,7 +178,7 @@ The value of the secret.
 
 Discovery
 
-(AI security only) **Sources** - tools that detected the secret.
+(ADLC security only) **Sources** - tools that detected the secret.
 
 Where
 
