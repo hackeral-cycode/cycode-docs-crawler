@@ -184,7 +184,7 @@ The MCP Server exposes Cycode’s public API as MCP tools. Capabilities include:
 *   **Inventory** — projects, repositories, group hierarchy, members, roles, ownership, and labels.
 *   **Scans and activity** — scan history, group-level aggregations, PR scan statistics, and audit logs.
 *   **Compliance** — frameworks, controls, evidence, posture, and project coverage.
-*   **AI security** — AI repository insights and AI interaction events (prompt, file-read, and MCP execution events).
+*   **ADLC security** — AI repository insights and AI interaction events (prompt, file-read, and MCP execution events).
 *   **Reports** — report suites, executions, and on-demand report generation.
 *   **Integrations** — Jira, GitHub vulnerability alerts, GitLab vulnerability reports, Kubernetes, brokers, and more.
 
