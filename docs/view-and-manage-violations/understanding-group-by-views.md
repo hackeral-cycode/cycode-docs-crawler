@@ -8,7 +8,7 @@ Source: https://docs.cycode.com/view-and-manage-violations/understanding-group-b
 
 [](https://gitlab.com/cycodehq/documentation/cycode_docs/-/blob/main/src/content/view-and-manage-violations/understanding-group-by-views.md "Edit this page")
 
-Updated on Mar 22, 2026 • Published on Mar 19, 2026
+Updated on Jun 3, 2026 • Published on Mar 19, 2026
 
 * * *
 
@@ -16,19 +16,21 @@ Updated on Mar 22, 2026 • Published on Mar 19, 2026
 
 Cycode’s ‘Group By’ views (excluding Group By ‘None’) are now powered by an analytical engine to provide a more scalable and powerful way to explore violation data.
 
-This approach is designed to improve how customers analyze large volumes of findings and use grouping and filtering. It is part of our broader investment in giving security teams better visibility and more flexible investigation.
+In these grouped views, the entire page is served from the same analytics engine: the violations table, the widgets above it, and the filters all draw from one analytics-oriented data layer. This keeps the numbers consistent across the table, widgets, and filters, and gives you a more scalable way to explore large volumes of findings.
 
-As part of this evolution, some violation experiences in Cycode now rely on an analytics-oriented data layer that is optimized for exploration and reporting, especially in views that support grouping, filtering, and large result sets.
+Group By ‘None’ is the exception. It continues to show live, instant data in real time, so you can always switch to it when you need the most up-to-date, point-in-time view.
+
+This approach is designed to improve how customers analyze large volumes of findings and use grouping and filtering. It is part of our broader investment in giving security teams better visibility and more flexible investigation.
 
 ## What to expect [Copied!](#what-to-expect "Copy link to this section")
 
-In analytics-powered violation views, data is processed through an analytics engine and typically refreshes within a few minutes.
+In analytics-powered grouped views, data is processed through an analytics engine and typically refreshes within a few minutes (near real time) rather than instantly.
 
-This means that in some cases, you may notice short timing differences between different parts of the platform. For example, the Violation Tables may not always update at exactly the same moment.
+Because grouped views are near real time while Group By ‘None’ is instant, you may occasionally notice minor differences between a grouped view and Group By ‘None’ until the analytics engine finishes processing the latest changes.
 
 These timing differences are expected in systems that are optimized for analytics and large-scale data exploration, and they usually resolve automatically as data refreshes.
 
-![](/assets/image%28726%29.png)
+![Before and after: routing grouped Violations views through the analytics layer](/assets/image%28726%29.png)
 
 ## Why this approach is valuable [Copied!](#why-this-approach-is-valuable "Copy link to this section")
 

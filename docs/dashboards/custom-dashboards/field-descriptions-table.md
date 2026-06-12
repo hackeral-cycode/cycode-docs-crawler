@@ -59,6 +59,10 @@ Name
 
 Human-readable name of the entity.
 
+Open Violation Count
+
+Current number of open violations associated with the branch or repository. Use **Equal** **0** to identify branches or repositories with no open violations.
+
 Clones
 
 ID
@@ -336,6 +340,10 @@ Direct URL linking to the relevant resource in the source system.
 Default Branch
 
 The name of the primary branch for the repository.
+
+Open Violation Count
+
+Current number of open violations associated with the branch or repository. Use **Equal** **0** to identify branches or repositories with no open violations.
 
 Secret Values
 

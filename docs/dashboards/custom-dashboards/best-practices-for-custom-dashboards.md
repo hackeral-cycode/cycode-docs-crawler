@@ -227,6 +227,30 @@ Create a widget that can identify hotspots across your engineering group, to see
 6.  Save with a descriptive name, for example **Violations per repo**.
     
 
+### Repositories or branches with no open violations [Copied!](#repositories-or-branches-with-no-open-violations "Copy link to this section")
+
+#### Goal [Copied!](#goal-4 "Copy link to this section")
+
+Create a widget that lists repositories or branches that currently have zero open violations, to support visibility into maintained security posture, coverage, and risk reduction.
+
+The **Open Violation Count** filter is available for the **Repositories** and **Branches** data sources, and identifies entities based on their current number of open violations. This is useful because the branch filter (when the data source is **Violations**) lists only entities that have violations, so entities with zero violations are not visible from that data source.
+
+#### Build the question [Copied!](#build-the-question-4 "Copy link to this section")
+
+1.  Click **Create question**, and from the list of data sources select **Repositories** (or **Branches**).
+    
+2.  Configure the following filter:
+    
+    *   **Open Violation Count**→**Equal**→**0**
+3.  Click **Visualize** and select **Chart type** > **Table** (or **Number** to display the count of clean entities).
+    
+4.  Save with a descriptive name, for example **Repositories with no open violations**.
+    
+
+Tip
+
+To compare entities with and without open violations on the same dashboard, add multiple widgets — for example, one widget for repositories with open violations, and another with **Open Violation Count = 0**.
+
 Was this article helpful?
 
 Yes No

@@ -8,13 +8,17 @@ Source: https://docs.cycode.com/view-and-manage-violations
 
 [](https://gitlab.com/cycodehq/documentation/cycode_docs/-/blob/main/src/content/view-and-manage-violations/_index.md "Edit this page")
 
-Updated on Jan 22, 2026 • Published on Mar 26, 2024
+Updated on Jun 8, 2026 • Published on Mar 26, 2024
 
 * * *
 
 ## Overview [Copied!](#overview "Copy link to this section")
 
 The Violations view is a centralized control panel for investigating, remediating, and resolving violations, including violations in policies, in entities, and violations throughout the software development lifecycle (SDLC). This helps your organization understand where to start and how to resolve violations in the most effective and efficient manner.
+
+Note
+
+Cycode automatically resolves violations when a scan determines that the underlying issue has been fixed. For example, if you push a commit that deletes a file containing a violation, Cycode processes this change and automatically resolves the associated violation.
 
 ## View violations [Copied!](#view-violations "Copy link to this section")
 
