@@ -35,6 +35,14 @@ Claims are name/value pairs of information about an end-user or an authenticatio
 
 Claims allow the client application to verify the service user’s identity and retrieve necessary information without having to handle the user credentials directly.
 
+### Project scope [Copied!](#project-scope "Copy link to this section")
+
+By default, a service account is scoped globally and can act on any project in Cycode. You can also limit a service account to one or more specific projects so that its permissions only apply within that scope.
+
+This enables more granular access control and lets project-level users manage service accounts for their own projects without requiring global admin access.
+
+When creating a service account, select the relevant projects in the **Project scope** field. To keep the account global, leave the field empty.
+
 ## View the service accounts [Copied!](#view-the-service-accounts "Copy link to this section")
 
 You can see the following information in the Service accounts view.
@@ -74,15 +82,17 @@ Date and time that the service account was created.
     
     For more information about roles, go to [Members](/cycode-settings/user-administration/manage-cycode-members/) .
     
-4.  Click **Create**.
+4.  (Optional) In the **Project scope** field, select the projects this service account can access. Leave empty to keep the account global.
     
-5.  From the **Client ID & Secret** window, copy the client ID and the client secret.
+5.  Click **Create**.
+    
+6.  From the **Client ID & Secret** window, copy the client ID and the client secret.
     
     Warning
     
     Save the client secret in a secure location. You won’t see it again or be able to restore it.
     
-6.  Click **Done**.
+7.  Click **Done**.
     
 
 ### Keyless authentication [Copied!](#keyless-authentication "Copy link to this section")
@@ -97,7 +107,9 @@ Date and time that the service account was created.
     
     For more information about roles, go to [Members](/cycode-settings/user-administration/manage-cycode-members/) .
     
-4.  Provide the values for the following parameters that are fetched from the API of your organization’s OIDC provider. Cycode uses these values to verify incoming OIDC tokens.
+4.  (Optional) In the **Project scope** field, select the projects this service account can access. Leave empty to keep the account global.
+    
+5.  Provide the values for the following parameters that are fetched from the API of your organization’s OIDC provider. Cycode uses these values to verify incoming OIDC tokens.
     
     Parameter
     
@@ -111,9 +123,9 @@ Date and time that the service account was created.
     
     (Audience) The specific client application that the token is intended for, identified by its Client ID.
     
-5.  To add additional claims for the verification process, click **Add claim** and provide the relevant key-value pair.
+6.  To add additional claims for the verification process, click **Add claim** and provide the relevant key-value pair.
     
-6.  Click **Create**.
+7.  Click **Create**.
     
 
 ## Disable a service account [Copied!](#disable-a-service-account "Copy link to this section")

@@ -77,7 +77,12 @@ Manage general scanner settings and individual scanners settings, such as:
 
 ### Activity [Copied!](#activity "Copy link to this section")
 
-View audit logs that reflect platform activity.
+The Activity area lets you view the following:
+
+*   SCM Logs - inspect the raw events Cycode receives from your connected SCM providers (commits, pushes, pull request updates, and more), and confirm that Cycode is receiving them as expected.
+    
+*   Audit Logs - review the actions taken by the members of your organization on the Cycode platform.
+    
 
 ### Back office [Copied!](#back-office "Copy link to this section")
 

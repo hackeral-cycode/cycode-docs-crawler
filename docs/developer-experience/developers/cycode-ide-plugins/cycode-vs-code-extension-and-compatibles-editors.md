@@ -18,9 +18,25 @@ The Cycode VS Code Extension is a plugin for Microsoft’s Visual Studio Code (V
 
 Note
 
-Cycode supports multiple editors built on the VS Code ecosystem. These include **Eclipse Theia**, **Cursor**, **Windsurf**, and other editors compatible with the VS Code extension API.
+Cycode supports multiple editors built on the VS Code ecosystem. These include **Eclipse Theia**, **Cursor**, **Windsurf**, and other editors compatible with the VS Code extension API. The Cycode VS Code Extension is also published to the [Open VSX Registry](https://open-vsx.org/) and can be installed in any editor that consumes Open VSX.
 
 The Cycode Extension provides full coverage across all supported IDEs and editors, offering features for Secrets Detection, SCA, IaC, and SAST. The tree view and violation cards are already available and work consistently across compatible environments.
+
+### Scan behavior [Copied!](#scan-behavior "Copy link to this section")
+
+The Cycode VS Code Extension runs Secrets, SCA, and IaC scans automatically when a file is saved. SAST scans are not triggered on save; to run SAST against new or modified code, start a manual workspace scan from the actions toolbar.
+
+### Violation highlighting [Copied!](#violation-highlighting "Copy link to this section")
+
+Violations are highlighted in the editor using the standard VS Code error squiggle. Line-level highlighting is constrained by the VS Code extension API, so an alternative visual indicator for violations is not currently configurable.
+
+### Local network permission prompts [Copied!](#local-network-permission-prompts "Copy link to this section")
+
+Some browsers display a prompt that the application “wants to look for and connect to any device on your local network” when authenticating the extension. This is a standard browser permission. Cycode does not scan local devices without explicit user authorization, and all communication is encrypted.
+
+### JetBrains plugin and IntelliJ versions [Copied!](#jetbrains-plugin-and-intellij-versions "Copy link to this section")
+
+The JetBrains plugin has not been officially tested against IntelliJ 2026.1. Unless JetBrains breaks plugin compatibility (which is rare across point releases), the plugin is expected to work on that version.
 
 ### Key Features [Copied!](#key-features "Copy link to this section")
 

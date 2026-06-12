@@ -82,6 +82,10 @@ Specify a minimum severity level for reported findings to control the verbosity 
 
 Ignore specific findings based on the detected value, the file path, or the rule identifier that triggered the detection. For more information, go to [Ignoring scan results](https://github.com/cycodehq/cycode-cli?tab=readme-ov-file#ignoring-scan-results) .
 
+**CI/CD integration**
+
+Add security gates to your CI/CD pipelines to catch vulnerabilities before they merge.
+
 ## CLI scan results vs. SCM integration results [Copied!](#cli-scan-results-vs-scm-integration-results "Copy link to this section")
 
 The Cycode CLI is designed as a developer-focused tool for local scanning and ad-hoc security checks. It is not intended to replace [native SCM integrations](/integrations/scm-source-code-management-tools/) in CI/CD pipelines.
@@ -95,6 +99,8 @@ The **Violations** tab is populated exclusively by native SCM integrations, whic
 The only exception to this behavior is Software Composition Analysis (SCA) scans using the `--monitor` flag. When you run an SCA scan in monitor mode, the results are pushed to the **Violations** tab.
 
 This capability exists because SCA scanning sometimes requires local execution to resolve dependencies from private registries that are not accessible from the Cycode platform. In these cases, the `--monitor` flag enables you to run the scan locally while still reporting the results to the platform.
+
+For more information, go to [Push CLI scan results to the platform with `--monitor`](/cli/reference/push-cli-scan-results-with-monitor/) .
 
 Note
 
@@ -126,7 +132,7 @@ No
 
 CI/CD pipeline scanning
 
-Not recommended
+[Yes](/cli/reference/cicd-pipeline)
 
 Yes
 
@@ -157,6 +163,16 @@ Yes
 *   Exception: SCA scans with `--monitor` mode.
 
 To set up native SCM integrations for your CI/CD pipelines, go to [Integrations](/integrations/scm-source-code-management-tools/) .
+
+## Workflows and policies in the CLI [Copied!](#workflows-and-policies-in-the-cli "Copy link to this section")
+
+Cycode workflows apply to CLI and IDE scans. For example, a workflow that ignores a SAST finding for a specific repository is honored by the CLI and the IDE extension.
+
+SAST custom policies and other platform policies are pulled and applied by the CLI at scan time. Exporting the raw YAML policy definitions through the API is not currently supported.
+
+Custom policies created with Graph Query (RIG-based policies) are not applied to CLI scans. Violations from those policies surface only in the Cycode platform.
+
+The CLI does not currently apply ignores set in the Cycode UI for individual violations. Only ignores produced via the merged-PR ignore flow are respected by CLI scans.
 
 Was this article helpful?
 

@@ -26,6 +26,8 @@ You can configure the following organization-level settings:
     
 *   [Project settings](/cycode-settings/admin-settings/projects)
     
+*   [Virtual repositories](/cycode-settings/admin-settings/virtual-repositories)
+    
 
 Was this article helpful?
 

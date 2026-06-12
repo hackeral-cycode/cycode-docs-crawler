@@ -31,7 +31,7 @@ Regarding Custom Certificates
 
 The Broker **does not** currently support the use of custom certificates (either for the internal tools to be connected or for proxies).
 
-The client can be executed in one of two modes, standard `docker run` or as part of an existing Kubernetes cluster.
+The client can be executed in one of two modes, standard `docker run` or as part of an existing Kubernetes cluster. Note that certain broker configurations only support deployment on Kubernetes.
 
 The client is configured using the following ENV variables (the installation command with the generated ENV variables is received upon broker creation in the UI, see image below):
 
@@ -135,6 +135,15 @@ If your network contains devices that inspect / block outbound traffic, you’ll
     
 *   **S3**: `https://tenants-prod-us.s3.us-east-1.amazonaws.com/` or `https://tenants-prod-eu.s3.eu-central-1.amazonaws.com` (EU environment).
     
+
+### Health Checks [Copied!](#health-checks "Copy link to this section")
+
+For Kubernetes deployments, the Broker Client container exposes an HTTP health check endpoint for the `readinessProbe`. This allows Kubernetes to ensure the client is fully connected and ready to accept tasks before routing traffic to it.
+
+*   **Port**: `9494`
+*   **Path**: `/health/ready`
+
+You may need to adjust your network policies to allow traffic to this port from the `kubelet` on your cluster nodes.
 
 ## Broker Security [Copied!](#broker-security "Copy link to this section")
 

@@ -532,6 +532,26 @@ Project manager
 
 Project member
 
+Manage labels
+
+Allows creating, assigning, and removing Cycode labels on resources.
+
+Yes
+
+Yes
+
+X
+
+X
+
+X
+
+X
+
+X
+
+X
+
 View asset inventory
 
 Allows viewing the inventory of assets, repositories, and resources.

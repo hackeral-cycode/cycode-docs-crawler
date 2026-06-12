@@ -24,6 +24,48 @@ Date
 
 Highlights
 
+0.34.4
+
+2026-06-07
+
+Improvements and enhancements
+
+0.34.3
+
+2026-06-03
+
+Readiness endpoint
+
+0.34.2
+
+2026-05-25
+
+Improvements and enhancements
+
+0.34.1
+
+2026-05-05
+
+Improvements and enhancements
+
+0.33.1
+
+2026-04-26
+
+Improvements and enhancements
+
+0.32.2
+
+2026-04-15
+
+Runtime updates
+
+0.32.1
+
+2026-03-30
+
+Compressed response handling
+
 0.31.2
 
 2026-03-16
@@ -181,6 +223,62 @@ Stream handling
 Metrics endpoint
 
 ## Changelog [Copied!](#changelog "Copy link to this section")
+
+### Version 0.34.4 [Copied!](#version-0344 "Copy link to this section")
+
+**Release Date:** 2026-06-07
+
+*   General improvements and enhancements
+
+* * *
+
+### Version 0.34.3 [Copied!](#version-0343 "Copy link to this section")
+
+**Release Date:** 2026-06-03
+
+*   Added a readiness endpoint (`/health/ready`) that reports ready only once the broker-client has connected to Cycode
+
+* * *
+
+### Version 0.34.2 [Copied!](#version-0342 "Copy link to this section")
+
+**Release Date:** 2026-05-25
+
+*   General improvements and enhancements
+
+* * *
+
+### Version 0.34.1 [Copied!](#version-0341 "Copy link to this section")
+
+**Release Date:** 2026-05-05
+
+*   General improvements and enhancements
+
+* * *
+
+### Version 0.33.1 [Copied!](#version-0331 "Copy link to this section")
+
+**Release Date:** 2026-04-26
+
+*   General improvements and enhancements
+
+* * *
+
+### Version 0.32.2 [Copied!](#version-0322 "Copy link to this section")
+
+**Release Date:** 2026-04-15
+
+*   Updated runtime dependencies for improved stability and security
+
+* * *
+
+### Version 0.32.1 [Copied!](#version-0321 "Copy link to this section")
+
+**Release Date:** 2026-03-30
+
+*   Added support for compressed response handling and storage-based response delivery
+
+* * *
 
 ### Version 0.31.2 [Copied!](#version-0312 "Copy link to this section")
 
